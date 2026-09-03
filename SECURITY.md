@@ -91,11 +91,14 @@ a `<meta>` element, which browsers enforce for every directive used here. Only
 `<meta name="referrer">`, a fully supported mechanism. The probe inspects
 response headers only.
 
-**"Page carries no strict-transport-security"** and **"no x-content-type-options"**
-— not reproducible locally and not meaningful against the test harness. The probe
-ran against `python -m http.server`, which sends no headers at all. GitHub Pages
-serves `*.github.io` over HTTPS, and that domain is on the browser HSTS preload
-list. Both are to be re-verified against the live URL after deployment.
+**"Page carries no strict-transport-security"** — not true on the real host.
+Verified against the live URL: GitHub Pages returns
+`strict-transport-security: max-age=31556952`.
+
+**"Page carries no x-content-type-options"** — **true, and I predicted otherwise.**
+I expected GitHub Pages to send `nosniff`. It does not. Verified against the live
+URL, the header is absent, and a static host gives no way to add it. See the
+accepted risk below.
 
 **"API response carries HSTS"** and **"API response carries nosniff"** — not
 applicable. There is no API. Those checks were exercising a 404.
@@ -116,6 +119,20 @@ nothing worth stealing a click for.
 
 If this ever becomes a real trading site with a login, move it to a host that can
 set headers and add `frame-ancestors 'self'`.
+
+**No `X-Content-Type-Options: nosniff`.** GitHub Pages does not send it and does
+not permit custom headers. The exposure is a browser sniffing a response as a
+type other than the one declared.
+
+What limits it here: every file is static, correctly typed by GitHub from its
+extension, and there are no user uploads, so no attacker controls a file or its
+declared type. The CSP narrows what a successful sniff could achieve anyway —
+`script-src` allows only same-origin files plus one hash-pinned inline script,
+and `object-src` and `default-src` are `'none'`.
+
+Verified live: `content-type: text/html; charset=utf-8` on documents and the
+correct types on assets. Accepted for a static demo. On a host that can set
+headers, add nosniff.
 
 **Font files are redistributed.** Permitted by the SIL Open Font License; the
 licence notice ships in `assets/fonts/OFL.txt`.
@@ -148,9 +165,13 @@ python "../../.claude/skills/secure-audit/scripts/probe.py" <url> --delay 1
 python "../../.claude/skills/secure-audit/scripts/scan-xss.py" .
 ```
 
-After deployment, confirm against the live URL:
+Verified live at <https://kaliber-autonomy.github.io/hhl-demo/> on 2026-09-03:
 
-1. `strict-transport-security` and `x-content-type-options` are present.
-2. The page loads with zero requests to any domain other than the host.
-3. `robots.txt` returns the disallow rule.
-4. A tracking lookup with an HTML payload in `?ref=` still renders as text.
+| Check | Result |
+|---|---|
+| `strict-transport-security` | present, `max-age=31556952` |
+| `x-content-type-options` | absent, accepted above |
+| CSP, referrer policy, noindex | present in the document |
+| Third-party requests on load | none |
+| `robots.txt` | returns disallow all |
+| Fonts, pages, assets | all 200 |
