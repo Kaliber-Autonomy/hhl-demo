@@ -13,7 +13,7 @@ const OUT = path.join(ROOT, 'site');
 
 const BRAND = 'Halifax Holland Line';
 const TAGLINE = 'Canada · Netherlands ocean freight';
-const SITE = process.env.HHL_SITE_URL || 'https://www.halifaxhollandline.example';
+const SITE = process.env.HHL_SITE_URL || 'https://kaliber-autonomy.github.io/hhl-demo';
 
 /* This is a demonstration of a company that does not trade. Letting it be
    indexed would put a fictional shipping line into search results as though

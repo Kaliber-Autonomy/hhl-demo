@@ -115,6 +115,20 @@ Deliberately **not** published: vessel IMO numbers, berth assignments at real
 terminals, invented performance percentages, and street addresses inside real
 buildings.
 
+## Hosting
+
+Published from `site/` on GitHub Pages. The repository is
+`Kaliber-Autonomy/hhl-demo` and the live URL is
+<https://kaliber-autonomy.github.io/hhl-demo/>.
+
+Every page ships `noindex, nofollow` and `robots.txt` disallows everything, so
+the demo never surfaces in search results as a real shipping company. To change
+the URL, set `HHL_SITE_URL` before building, or edit the default in
+`tools/build.js`, then rebuild and commit.
+
+Security review and the reasoning behind the headers, the self-hosted fonts and
+the one accepted risk are in [SECURITY.md](SECURITY.md).
+
 ## Before this becomes a real site
 
 1. Replace the placeholder company name, addresses, phone numbers and email.
