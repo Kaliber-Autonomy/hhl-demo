@@ -1,0 +1,52 @@
+name: Deploy to GitHub Pages
+
+# The site lives in site/, and Pages only accepts / or /docs as a branch
+# source, so it is published as a build artifact instead. Nothing is compiled
+# here: site/ is committed already and this only uploads it.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Least privilege. The job reads the repo and publishes Pages, nothing else.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race. Queue rather than cancel, so the last push wins.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Rebuild pages from source and fail if the output drifted
+        run: |
+          node tools/build.js
+          if ! git diff --quiet -- site; then
+            echo "::error::site/ does not match tools/. Run 'node tools/build.js' and commit the result."
+            git diff --stat -- site
+            exit 1
+          fi
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
