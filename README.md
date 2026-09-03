@@ -115,6 +115,23 @@ Deliberately **not** published: vessel IMO numbers, berth assignments at real
 terminals, invented performance percentages, and street addresses inside real
 buildings.
 
+## Icons
+
+The favicon is the site's own brand mark: two ports joined by a great-circle
+arc, with a red tick at north. `tools/make-favicon.py` renders the whole set at
+8x and downsamples, so the curves stay clean:
+
+| File | Used for |
+|---|---|
+| `favicon.ico` | 16, 32 and 48 px, for tabs, bookmarks and Windows |
+| `favicon.svg` | scalable, preferred by modern browsers |
+| `apple-touch-icon.png` | 180 px, iOS home screen, full-bleed so iOS can round it |
+| `icon-192.png`, `icon-512.png` | Android and installed web app, via `site.webmanifest` |
+
+Below about 32 px the hairline detail and the north tick turn to mush, so the
+small sizes render a deliberately bolder, simplified version of the same shape.
+Re-run `python tools/make-favicon.py` after any change to the mark.
+
 ## Hosting
 
 Published from `site/` on GitHub Pages. The repository is

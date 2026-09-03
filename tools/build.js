@@ -247,7 +247,10 @@ function page(meta, body) {
 <meta property="og:description" content="${meta.desc}">
 <meta property="og:image" content="${SITE}/assets/img/ocean-aerial-ship.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.ico" sizes="32x32">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/site.css">
 <script>${INLINE_JS}</script>
