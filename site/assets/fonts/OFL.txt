@@ -1,0 +1,8 @@
+Archivo, Inter and IBM Plex Mono are distributed under the
+SIL Open Font License, Version 1.1.
+
+Full licence text: https://openfontlicense.org
+
+These files are redistributed here under the terms of that licence,
+which permits bundling and self-hosting. The fonts are not sold and
+are not offered separately from this website.

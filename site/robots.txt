@@ -1,0 +1,4 @@
+# This is a demonstration site for a company that does not trade.
+# It must not appear in search results as though it were a real business.
+User-agent: *
+Disallow: /

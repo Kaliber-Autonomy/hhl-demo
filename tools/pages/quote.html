@@ -1,0 +1,212 @@
+<!--{"title":"Request a quote","desc":"Tell us the route, the cargo and the timing. We return a written quote covering freight, customs and delivery, usually the same working day.","nav":"quote"}-->
+
+<section class="pagehead">
+  <div class="pagehead__bg"><img src="assets/img/ship-at-sea.jpg" alt="" aria-hidden="true" width="1300" height="783"></div>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Request a quote</span></nav>
+    <h1 class="h1">Request a quote</h1>
+    <p class="lede">Four short steps. Only the contact details are required; anything you leave blank we will ask about when we call.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="wizard" id="quote-wizard">
+      <ol class="wizard__nav" aria-label="Quote steps">
+        <li class="is-active"><span class="n">1</span><span><span class="t">Route</span><span class="d">Where it starts and ends</span></span></li>
+        <li><span class="n">2</span><span><span class="t">Cargo</span><span class="d">What is in the box</span></span></li>
+        <li><span class="n">3</span><span><span class="t">Contact</span><span class="d">Who we send it to</span></span></li>
+        <li><span class="n">4</span><span><span class="t">Review</span><span class="d">Check and submit</span></span></li>
+        <li><span class="n">5</span><span><span class="t">Sent</span><span class="d">What happens next</span></span></li>
+      </ol>
+
+      <form id="quote-form" novalidate>
+        <div class="progressbar" id="quote-progress" role="presentation"><i style="width:0%"></i></div>
+
+        <!-- Step 1 -->
+        <fieldset class="wstep is-active">
+          <legend class="h2" style="margin-bottom:1.4rem">Route</legend>
+          <div class="field">
+            <span class="lbl">Direction <span class="req" aria-hidden="true">*</span></span>
+            <div class="radiocards">
+              <label class="radiocard"><input type="radio" name="direction" value="eastbound" data-label="Halifax to Rotterdam" checked required><span>Canada to Netherlands<small>Eastbound, sails Friday</small></span></label>
+              <label class="radiocard"><input type="radio" name="direction" value="westbound" data-label="Rotterdam to Halifax"><span>Netherlands to Canada<small>Westbound, sails Tuesday</small></span></label>
+            </div>
+          </div>
+          <div class="grid g-2">
+            <div class="field">
+              <label for="q-origin">Collection point <span class="req" aria-hidden="true">*</span></label>
+              <input id="q-origin" name="origin" type="text" required placeholder="City and country, or port if you deliver to us">
+              <p class="err"></p>
+            </div>
+            <div class="field">
+              <label for="q-dest">Delivery point <span class="req" aria-hidden="true">*</span></label>
+              <input id="q-dest" name="destination" type="text" required placeholder="City and country, or port if you collect">
+              <p class="err"></p>
+            </div>
+          </div>
+          <div class="field">
+            <span class="lbl">Service required</span>
+            <div class="radiocards">
+              <label class="radiocard"><input type="radio" name="service" value="p2p" data-label="Port to port" checked><span>Port to port<small>You handle both ends</small></span></label>
+              <label class="radiocard"><input type="radio" name="service" value="d2d" data-label="Door to door"><span>Door to door<small>We handle everything</small></span></label>
+              <label class="radiocard"><input type="radio" name="service" value="p2d" data-label="Port to door"><span>Port to door<small>Delivery only</small></span></label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="q-voyage">Preferred voyage <span class="muted">(optional)</span></label>
+            <input id="q-voyage" name="voyage" type="text" placeholder="e.g. 2402E">
+            <p class="hint">Leave blank and we will put you on the first sailing with space. <a href="schedule.html">Check the schedule</a>.</p>
+          </div>
+          <div class="btn-row mt-3"><button class="btn" type="button" data-next>Continue to cargo</button></div>
+        </fieldset>
+
+        <!-- Step 2 -->
+        <fieldset class="wstep">
+          <legend class="h2" style="margin-bottom:1.4rem">Cargo</legend>
+          <div class="field">
+            <span class="lbl">Load type <span class="req" aria-hidden="true">*</span></span>
+            <div class="radiocards">
+              <label class="radiocard"><input type="radio" name="loadtype" value="fcl" data-label="Full container" checked required><span>Full container<small>The box is yours</small></span></label>
+              <label class="radiocard"><input type="radio" name="loadtype" value="lcl" data-label="Shared container"><span>Shared container<small>You pay for the space you use</small></span></label>
+              <label class="radiocard"><input type="radio" name="loadtype" value="breakbulk" data-label="Breakbulk or out of gauge"><span>Breakbulk<small>Out of gauge or heavy lift</small></span></label>
+            </div>
+          </div>
+          <div class="grid g-2">
+            <div class="field">
+              <label for="q-equipment">Equipment</label>
+              <select id="q-equipment" name="equipment">
+                <option>20 ft standard</option>
+                <option selected>40 ft standard</option>
+                <option>40 ft high cube</option>
+                <option>40 ft refrigerated</option>
+                <option>Open top or flat rack</option>
+                <option>Not sure, please advise</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="q-commodity">Commodity <span class="req" aria-hidden="true">*</span></label>
+              <input id="q-commodity" name="commodity" type="text" required placeholder="e.g. frozen lobster, kiln-dried lumber">
+              <p class="err"></p>
+            </div>
+          </div>
+          <div class="grid g-2">
+            <div class="field">
+              <label for="q-weight">Gross weight</label>
+              <input id="q-weight" name="weight" type="text" placeholder="e.g. 18,400 kg">
+            </div>
+            <div class="field">
+              <label for="q-ready">Cargo ready date</label>
+              <input id="q-ready" name="ready" type="date">
+            </div>
+          </div>
+          <div class="field">
+            <label for="q-special">Special handling <span class="muted">(optional)</span></label>
+            <textarea id="q-special" name="special" placeholder="Temperature setting, dangerous goods class, lifting points, customs status, anything unusual"></textarea>
+          </div>
+          <div class="notice">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 11v5M12 7.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <p class="mb-0">If the goods are new to this lane, tell us where they are made. Origin drives whether the preferential rate applies, and we would rather establish that before quoting than after.</p>
+          </div>
+          <div class="btn-row mt-3">
+            <button class="btn btn--ghost" type="button" data-prev>Back</button>
+            <button class="btn" type="button" data-next>Continue to contact</button>
+          </div>
+        </fieldset>
+
+        <!-- Step 3 -->
+        <fieldset class="wstep">
+          <legend class="h2" style="margin-bottom:1.4rem">Contact</legend>
+          <div class="grid g-2">
+            <div class="field">
+              <label for="q-company">Company <span class="req" aria-hidden="true">*</span></label>
+              <input id="q-company" name="company" type="text" required autocomplete="organization">
+              <p class="err"></p>
+            </div>
+            <div class="field">
+              <label for="q-name">Your name <span class="req" aria-hidden="true">*</span></label>
+              <input id="q-name" name="name" type="text" required autocomplete="name">
+              <p class="err"></p>
+            </div>
+          </div>
+          <div class="grid g-2">
+            <div class="field">
+              <label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input id="q-email" name="email" type="email" required autocomplete="email">
+              <p class="err"></p>
+            </div>
+            <div class="field">
+              <label for="q-phone">Phone</label>
+              <input id="q-phone" name="phone" type="tel" autocomplete="tel">
+              <p class="err"></p>
+            </div>
+          </div>
+          <div class="field">
+            <label class="checkline"><input type="checkbox" name="newsletter"><span>Send me the monthly tariff and schedule notice. Two or three emails a year, no marketing.</span></label>
+          </div>
+          <div class="field">
+            <label class="checkline"><input type="checkbox" name="consent" required><span>I agree that my details may be used to prepare and discuss this quotation. <span class="req" aria-hidden="true">*</span></span></label>
+            <p class="err"></p>
+          </div>
+          <div class="btn-row mt-3">
+            <button class="btn btn--ghost" type="button" data-prev>Back</button>
+            <button class="btn" type="button" data-next>Review the request</button>
+          </div>
+        </fieldset>
+
+        <!-- Step 4 -->
+        <fieldset class="wstep">
+          <legend class="h2" style="margin-bottom:1.4rem">Review and submit</legend>
+          <p class="lede">Check the details below. You can go back to any step to change them.</p>
+          <div id="quote-review" class="mt-3"></div>
+          <div class="notice mt-3">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 12.2l2.4 2.3 4.6-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="mb-0">This is a demonstration site. Submitting will not send anything to anyone, and no details leave your browser.</p>
+          </div>
+          <div class="btn-row mt-3">
+            <button class="btn btn--ghost" type="button" data-prev>Back</button>
+            <button class="btn btn--lg" type="submit">Submit request</button>
+          </div>
+        </fieldset>
+
+        <!-- Step 5 -->
+        <fieldset class="wstep">
+          <div class="card" style="border-left:3px solid var(--ok)">
+            <p class="eyebrow" style="color:var(--ok)">Request received</p>
+            <h2 class="h1" style="margin-bottom:.6rem">Thank you. Your reference is <span id="quote-ref" class="mono">—</span></h2>
+            <p class="lede" id="quote-echo"></p>
+            <ol class="stack mt-3">
+              <li><b>Within four working hours</b> an operations coordinator reviews the request and confirms space on the sailing you asked for.</li>
+              <li><b>Same working day</b> you receive a written quotation covering freight, customs, inland transport and all surcharges.</li>
+              <li><b>Before you commit</b> we confirm the tariff classification and whether the goods qualify for preference under CETA.</li>
+            </ol>
+            <div class="btn-row mt-3">
+              <a class="btn" href="schedule.html">View the sailing schedule</a>
+              <a class="btn btn--ghost" href="index.html">Back to the home page</a>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section section--ice section--line">
+  <div class="wrap">
+    <div class="grid g-3">
+      <div class="card">
+        <h3 class="h4">What a quote includes</h3>
+        <p>Ocean freight, terminal handling at both ends, documentation, the customs entry and any inland leg you asked for. Every surcharge is listed by name with what it is for.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">How long it holds</h3>
+        <p>Spot quotes are valid for fourteen days. Contract rates are fixed for the agreed term and are not adjusted for peak season.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">If you would rather talk</h3>
+        <p>Call the operations desk in Halifax or Rotterdam and you will get somebody who works this lane.</p>
+        <a class="link-arrow mt-2" href="contact.html">Contact details</a>
+      </div>
+    </div>
+  </div>
+</section>
