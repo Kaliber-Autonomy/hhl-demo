@@ -10,8 +10,14 @@
 <meta name="description" content="Reach the operations desk in Halifax or Rotterdam, or send a message and we will come back the same working day.">
 <meta name="theme-color" content="#08203A">
 <link rel="canonical" href="https://kaliber-autonomy.github.io/hhl-demo/contact.html">
+<link rel="alternate" hreflang="en-CA" href="https://kaliber-autonomy.github.io/hhl-demo/contact.html">
+<link rel="alternate" hreflang="fr-CA" href="https://kaliber-autonomy.github.io/hhl-demo/fr-ca/contact.html">
+<link rel="alternate" hreflang="de-DE" href="https://kaliber-autonomy.github.io/hhl-demo/de-de/contact.html">
+<link rel="alternate" hreflang="en-DE" href="https://kaliber-autonomy.github.io/hhl-demo/en-de/contact.html">
+<link rel="alternate" hreflang="x-default" href="https://kaliber-autonomy.github.io/hhl-demo/contact.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Halifax Holland Line">
+<meta property="og:locale" content="en_CA">
 <meta property="og:title" content="Contact | Halifax Holland Line">
 <meta property="og:description" content="Reach the operations desk in Halifax or Rotterdam, or send a message and we will come back the same working day.">
 <meta property="og:image" content="https://kaliber-autonomy.github.io/hhl-demo/assets/img/ocean-aerial-ship.jpg">
@@ -24,7 +30,7 @@
 <link rel="stylesheet" href="assets/css/site.css">
 <script>document.documentElement.className += ' js';</script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"Halifax Holland Line","url":"https://kaliber-autonomy.github.io/hhl-demo","description":"Weekly ocean freight and customs brokerage between Halifax, Nova Scotia and Rotterdam, the Netherlands.","areaServed":[{"@type":"Place","name":"Halifax, Nova Scotia, Canada"},{"@type":"Place","name":"Rotterdam, the Netherlands"}]}
+{"@context":"https://schema.org","@type":"Organization","name":"Halifax Holland Line","url":"https://kaliber-autonomy.github.io/hhl-demo","description":"Weekly ocean freight and customs brokerage between Halifax, Bremerhaven and Rotterdam.","areaServed":[{"@type":"Place","name":"Halifax, Nova Scotia, Canada"},{"@type":"Place","name":"Bremerhaven, Germany"},{"@type":"Place","name":"Rotterdam, the Netherlands"}]}
 </script>
 </head>
 <body>
@@ -33,25 +39,47 @@
 <div class="utilbar">
     <div class="wrap">
       <div class="utilbar-left">
-        <span class="flex items-center gap-1"><span class="dot"></span> Both ports operating normally</span>
+        <span class="flex items-center gap-1"><span class="dot"></span> All three ports operating normally</span>
         <span class="sep hide-sm"></span>
         <span class="hide-sm">Halifax +1 902 555 0100</span>
-        <span class="sep hide-sm"></span>
-        <span class="hide-sm">Rotterdam rotterdam@example.com</span>
       </div>
       <div class="utilbar-right">
         <a href="tracking.html">Track a shipment</a>
         <span class="sep"></span>
         <a href="contact.html">Client login</a>
         <span class="sep"></span>
-        <span>EN</span>
+        <div class="langpick navitem">
+        <button type="button" aria-label="Region and language">
+          <span class="langpick__flag" aria-hidden="true">CA</span>
+          English
+          <svg class="chev" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="navpanel langpick__panel">
+            <a href="contact.html" hreflang="en-CA" lang="en-CA" aria-current="true">
+              <span class="langpick__region">Canada</span>
+              <span class="langpick__lang">English</span>
+            </a>
+            <a href="fr-ca/contact.html" hreflang="fr-CA" lang="fr-CA">
+              <span class="langpick__region">Canada</span>
+              <span class="langpick__lang">Français</span>
+            </a>
+            <a href="de-de/contact.html" hreflang="de-DE" lang="de-DE">
+              <span class="langpick__region">Deutschland</span>
+              <span class="langpick__lang">Deutsch</span>
+            </a>
+            <a href="en-de/contact.html" hreflang="en-DE" lang="en-DE">
+              <span class="langpick__region">Germany</span>
+              <span class="langpick__lang">English</span>
+            </a>
+        </div>
+      </div>
       </div>
     </div>
   </div>
 
   <header class="masthead">
     <div class="wrap">
-      <a class="brand" href="index.html" aria-label="Halifax Holland Line, home">
+      <a class="brand" href="index.html" aria-label="Halifax Holland Line">
         <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
         <circle cx="24" cy="24" r="23" fill="#08203A"/>
         <circle cx="24" cy="24" r="18.5" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
@@ -62,7 +90,7 @@
       </svg>
         <span class="brand__text">
           <span class="brand__name">Halifax Holland Line</span>
-          <span class="brand__sub">Canada · Netherlands ocean freight</span>
+          <span class="brand__sub">Canada · Germany · Netherlands ocean freight</span>
         </span>
       </a>
 
@@ -77,13 +105,13 @@
             <a href="services.html#project"><span class="t">Project and heavy cargo</span><span class="d">Machinery, breakbulk and anything that will not fit a container</span></a>
             <a href="services.html#reefer"><span class="t">Temperature controlled</span><span class="d">Reefer positions for seafood and produce</span></a>
             <div class="navpanel__foot">
-              <span class="muted">Not sure which service fits? Our team will map it for you.</span>
+              <a class="link-arrow" href="network.html">Network and ports</a>
               <a class="link-arrow" href="contact.html">Talk to us</a>
             </div>
           </div>
         </div>
-        <a href="network.html">Network</a>
-        <a href="schedule.html">Sailing schedule</a>
+        <a href="bremerhaven.html">Bremerhaven</a>
+        <a href="schedule.html">Schedule</a>
         <a href="about.html">Company</a>
       </nav>
 
@@ -104,6 +132,7 @@
     <a href="services.html#warehouse">Warehousing</a>
     <a href="services.html#inland">Inland transport</a>
     <p class="drawer__group">Company</p>
+    <a href="bremerhaven.html">Bremerhaven</a>
     <a href="network.html">Network and ports</a>
     <a href="schedule.html">Sailing schedule</a>
     <a href="about.html">About us</a>
@@ -111,10 +140,15 @@
     <p class="drawer__group">Tools</p>
     <a href="tracking.html">Track a shipment</a>
     <a href="quote.html">Request a quote</a>
-    <a class="btn btn--block" href="quote.html">Request a quote</a>
+    <p class="drawer__group">Region and language</p>
+    <a href="contact.html" hreflang="en-CA" lang="en-CA">Canada — English</a>
+    <a href="fr-ca/contact.html" hreflang="fr-CA" lang="fr-CA">Canada — Français</a>
+    <a href="de-de/contact.html" hreflang="de-DE" lang="de-DE">Deutschland — Deutsch</a>
+    <a href="en-de/contact.html" hreflang="en-DE" lang="en-DE">Germany — English</a>
   </div>
 
 <main id="main">
+
 <section class="pagehead">
   <div class="pagehead__bg"><img src="assets/img/bridge-fog.jpg" alt="" aria-hidden="true" width="605" height="891"></div>
   <div class="wrap">
@@ -277,7 +311,7 @@
     <div class="wrap">
       <div class="footer__grid">
         <div>
-          <a class="brand" href="index.html" aria-label="Halifax Holland Line, home">
+          <a class="brand" href="index.html" aria-label="Halifax Holland Line">
             <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
         <circle cx="24" cy="24" r="23" fill="#fff"/>
         <circle cx="24" cy="24" r="18.5" fill="none" stroke="#08203A" stroke-opacity=".25" stroke-width="1"/>
@@ -288,10 +322,10 @@
       </svg>
             <span class="brand__text">
               <span class="brand__name">Halifax Holland Line</span>
-              <span class="brand__sub">Canada · Netherlands ocean freight</span>
+              <span class="brand__sub">Canada · Germany · Netherlands ocean freight</span>
             </span>
           </a>
-          <p class="mt-3" style="max-width:34ch">We move containers between Atlantic Canada and the Netherlands, and we handle the customs paperwork at both ends ourselves.</p>
+          <p class="mt-3" style="max-width:34ch">We move containers between Atlantic Canada, Germany and the Netherlands, and we handle the customs paperwork at both ends ourselves.</p>
           <p class="tiny" style="color:#7793AF">Freight forwarder and customs broker. Cargo liability and errors and omissions cover in force.</p>
         </div>
         <div>
@@ -302,7 +336,7 @@
             <li><a href="services.html#warehouse">Warehousing</a></li>
             <li><a href="services.html#inland">Inland transport</a></li>
             <li><a href="services.html#reefer">Temperature controlled</a></li>
-            <li><a href="services.html#project">Project cargo</a></li>
+            <li><a href="services.html#project">Project and heavy cargo</a></li>
           </ul>
         </div>
         <div>
@@ -310,6 +344,7 @@
           <ul>
             <li><a href="schedule.html">Sailing schedule</a></li>
             <li><a href="tracking.html">Track a shipment</a></li>
+            <li><a href="bremerhaven.html">Bremerhaven</a></li>
             <li><a href="network.html">Ports and network</a></li>
             <li><a href="quote.html">Request a quote</a></li>
           </ul>
@@ -333,20 +368,24 @@
           <p class="mt-1 mb-0">+1 902 555 0100 · <a href="mailto:halifax@example.com">halifax@example.com</a></p>
         </div>
         <div>
+          <h4>Bremerhaven, Germany</h4>
+          <p class="mb-0">German branch and continental customs<br>Bremerhaven, Bremen<br><span class="tiny">Street address confirmed on incorporation</span></p>
+          <p class="mt-1 mb-0"><a href="mailto:bremerhaven@example.com">bremerhaven@example.com</a></p>
+        </div>
+        <div>
           <h4>Rotterdam, the Netherlands</h4>
-          <p class="mb-0">European operations and customs<br>Rotterdam, the Netherlands<br><span class="tiny">Street address confirmed on incorporation</span></p>
+          <p class="mb-0">European operations and customs<br>Rotterdam<br><span class="tiny">Street address confirmed on incorporation</span></p>
           <p class="mt-1 mb-0"><a href="mailto:rotterdam@example.com">rotterdam@example.com</a></p>
         </div>
       </div>
 
       <div class="footer__legal">
-        <span>&copy; <span data-year>2026</span> Halifax Holland Line. <b>Demonstration only &mdash; not a trading company.</b> <a href="sources.html">Sources and disclosures</a></span>
+        <span>&copy; <span data-year>2026</span> Halifax Holland Line. <b>Demonstration only — not a trading company.</b> <a href="sources.html">Sources and disclosures</a></span>
         <nav aria-label="Legal">
-          <a href="sources.html">Sources</a>
+          <a href="sources.html">Sources and disclosures</a>
           <a href="contact.html">Privacy</a>
           <a href="contact.html">Terms of carriage</a>
           <a href="contact.html">Accessibility</a>
-          <a href="contact.html">Modern slavery statement</a>
         </nav>
       </div>
     </div>
@@ -356,7 +395,7 @@
     <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 13V3M3 8l5-5 5 5" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
 
-  <div class="consent" role="region" aria-label="Cookie notice" hidden>
+  <div class="consent" role="region" aria-label="This demonstration stores nothing about you." hidden>
     <p><b>This demonstration stores nothing about you.</b></p>
     <p class="small">No analytics, no advertising cookies. A single local setting remembers that you have seen this notice.</p>
     <div class="btn-row">
@@ -365,6 +404,7 @@
     </div>
   </div>
 
+<script src="assets/js/i18n/en-CA.js"></script>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/site.js"></script>
 </body>

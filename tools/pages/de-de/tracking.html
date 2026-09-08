@@ -1,0 +1,72 @@
+<!--{"title":"Sendung verfolgen","desc":"Verfolgen Sie Ihren Container mit Sendungsverlauf, Schiffsposition und Dokumentenstatus.","nav":"tracking"}-->
+
+<section class="pagehead">
+  <div class="pagehead__bg"><img src="assets/img/ocean-aerial-ship.jpg" alt="" aria-hidden="true" width="1321" height="1075"></div>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Brotkrumennavigation"><a href="index.html">Start</a><span>/</span><span>Sendung verfolgen</span></nav>
+    <h1 class="h1">Sendung verfolgen</h1>
+    <p class="lede">Geben Sie eine Buchungsreferenz oder Containernummer ein. Sie sehen jede zur Sendung erfasste Bewegung, die aktuelle Position des Schiffs und den Stand jedes Dokuments in der Akte.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="card" style="max-width:760px">
+      <form id="track-form" novalidate>
+        <div class="field" style="margin-bottom:.75rem">
+          <label for="track-input">Buchungsreferenz oder Containernummer</label>
+          <div class="flex gap-1 wrapf">
+            <input id="track-input" type="search" style="flex:1;min-width:240px" placeholder="HHL-2041 oder HHLU2841503" autocomplete="off" spellcheck="false">
+            <button class="btn" type="submit">Sendung verfolgen</button>
+          </div>
+          <p class="hint">Buchungsreferenzen sehen aus wie HHL-2041. Containernummern bestehen aus vier Buchstaben und sieben Ziffern. Diese Demonstration enthält fünf Beispielsendungen.</p>
+        </div>
+      </form>
+      <div class="mt-2">
+        <p class="tiny muted" style="margin-bottom:.5rem">Beispielreferenzen zum Ausprobieren:</p>
+        <div class="flex gap-1 wrapf">
+          <button class="chip" type="button" data-demo-ref="HHL-2041">HHL-2041 &middot; auf See</button>
+          <button class="chip" type="button" data-demo-ref="HHL-2115">HHL-2115 &middot; Zollbeschau</button>
+          <button class="chip" type="button" data-demo-ref="HHL-1987">HHL-1987 &middot; zugestellt</button>
+          <button class="chip" type="button" data-demo-ref="HHL-2103">HHL-2103 &middot; vor Verladung</button>
+          <button class="chip" type="button" data-demo-ref="HHLU5560413">HHLU5560413 &middot; westwärts</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="track-result" class="mt-4" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="section section--ice section--line">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Hinter der Verfolgung</p>
+      <h2 class="h1">Woher die Statusmeldungen kommen</h2>
+      <p class="lede">Jede Meldung schreibt, wer oder was sie ausgelöst hat, statt sie aus einem erwarteten Fahrplan abzuleiten.</p>
+    </div>
+    <div class="steps">
+      <div><div class="n">1</div><h4>Terminaltor</h4><p>Automatische Torlesungen in Halifax und Bremerhaven erfassen den Container ein und aus.</p></div>
+      <div><div class="n">2</div><h4>Ladebestätigung</h4><p>Der Stauplan wird nach Abschluss der Verladung gegen den Bay-Plan abgeglichen.</p></div>
+      <div><div class="n">3</div><h4>Schiffsposition</h4><p>Position und Geschwindigkeit, wie von der Reederei des Dienstes gemeldet.</p></div>
+      <div><div class="n">4</div><h4>Zollereignisse</h4><p>Annahme, Beschau und Überlassung melden unsere Zollabteilungen an beiden Grenzen.</p></div>
+      <div><div class="n">5</div><h4>Zustellung</h4><p>Die letzte Meldung unterschreibt der Empfänger; sie kommt als Ablieferbeleg zur Akte.</p></div>
+    </div>
+
+    <div class="grid g-3 mt-4">
+      <div class="card">
+        <h3 class="h4">Benachrichtigungen</h3>
+        <p>Vertragskunden erhalten zu jeder Meldung eine E-Mail oder eine EDI-Nachricht. Sagen Sie uns, welche Ereignisse zählen, dann senden wir nur diese.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">Systemanbindung</h3>
+        <p>Wenn der Status in Ihrem eigenen System landen soll statt im Postfach, sagen Sie uns, womit Sie arbeiten, und wir suchen den einfachsten Weg.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">Etwas stimmt nicht</h3>
+        <p>Wenn eine Meldung nicht zu dem passt, was Sie vor Ort sehen, rufen Sie den Betrieb an. Dann sieht sich jemand die echte Akte an.</p>
+        <a class="link-arrow mt-2" href="contact.html">Betrieb kontaktieren</a>
+      </div>
+    </div>
+  </div>
+</section>

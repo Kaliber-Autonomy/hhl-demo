@@ -27,11 +27,12 @@ window.HHL = (function () {
     { name: 'Chebucto Bay' }
   ];
 
-  /* Port to port, following the carrier's published rotation. Comparable
-     transatlantic strings run Halifax to Bremerhaven in about nine days with
-     a further two to Rotterdam, so eleven is the honest number to advertise. */
-  var TRANSIT_E = 11;  /* Halifax to Rotterdam */
-  var TRANSIT_W = 12;  /* Rotterdam to Halifax */
+  /* The rotation calls Bremerhaven first, then Rotterdam two days later.
+     Comparable transatlantic services run Halifax to Bremerhaven in about
+     nine days, so those are the numbers we advertise. */
+  var TRANSIT_BRV = 9;   /* Halifax to Bremerhaven  */
+  var TRANSIT_E   = 11;  /* Halifax to Rotterdam    */
+  var TRANSIT_W   = 12;  /* Rotterdam to Halifax    */
 
   function buildSailings() {
     var out = [], i, v, etd, eta, cutoff, space, status;
@@ -42,8 +43,8 @@ window.HHL = (function () {
       eta = addDays(etd, transit);
       cutoff = addDays(etd, -2);
       space = Math.round(6 + seeded(seed) * 88);
-      status = etd < today ? (eta < today ? 'Arrived' : 'At sea')
-             : (cutoff < today ? 'Closed' : (space < 15 ? 'Nearly full' : 'Booking open'));
+      status = etd < today ? (eta < today ? 'arrived' : 'atsea')
+             : (cutoff < today ? 'closed' : (space < 15 ? 'full' : 'open'));
       out.push({
         voyage: String(2400 + i * 2 + (dir === 'westbound' ? 1 : 0)) + (dir === 'westbound' ? 'W' : 'E'),
         vessel: v.name, direction: dir,
@@ -53,6 +54,7 @@ window.HHL = (function () {
         to: dir === 'eastbound' ? 'Rotterdam, NL (NLRTM)' : 'Halifax, NS (CAHAL)',
         terminal: dir === 'eastbound' ? 'PSA Halifax, Fairview Cove' : 'Rotterdam, Maasvlakte',
         etd: iso(etd), eta: iso(eta), cutoff: iso(cutoff),
+        etaBremerhaven: dir === 'eastbound' ? iso(addDays(etd, TRANSIT_BRV)) : null,
         transit: transit, space: space, status: status
       });
     }
@@ -234,6 +236,16 @@ window.HHL = (function () {
       img: 'assets/img/halifax-terminal.jpg'
     },
     {
+      key: 'bremerhaven', name: 'Bremerhaven, Germany', code: 'DEBRV', country: 'Germany',
+      terminal: 'Container Terminal Bremerhaven', operator: 'North Sea Terminal Bremerhaven and MSC Gate',
+      depth: '14.5 m alongside', cranes: 'Ship-to-shore gantries across 14 deep-sea berths',
+      dock: '4,930 m of continuous quay across 2,900 hectares',
+      rail: 'Rail off the terminal to the Ruhr, Bavaria, Austria and Czechia',
+      coords: '53.54\u00b0 N, 8.58\u00b0 E',
+      note: 'The first European call on the crossing, about nine days from Halifax. Fourth largest container port in Europe, handling 5.21 million TEU in 2025.',
+      img: 'assets/img/de-crane-vertical.jpg'
+    },
+    {
       key: 'rotterdam', name: 'Rotterdam, the Netherlands', code: 'NLRTM', country: 'Netherlands',
       terminal: 'Maasvlakte deep-sea terminals', operator: 'APM Terminals, Rotterdam World Gateway and ECT Delta',
       depth: 'Deep-sea draught at the Maasvlakte terminals', cranes: 'Automated ship-to-shore cranes and stacking',
@@ -258,6 +270,13 @@ window.HHL = (function () {
       lines: ['Address to be confirmed', 'Halifax, Nova Scotia'],
       phone: '+1 902 555 0100', email: 'halifax@example.com', hours: 'Monday to Friday, 08:00 to 18:00 Atlantic',
       img: 'assets/img/city-halifax.jpg'
+    },
+    {
+      city: 'Bremerhaven', country: 'Germany', role: 'German branch and continental customs',
+      lines: ['Address to be confirmed', 'Bremerhaven, Bremen'],
+      phone: 'Issued on incorporation', email: 'bremerhaven@example.com',
+      hours: 'Monday to Friday, 08:00 to 18:00 Central European',
+      img: 'assets/img/de-terminal-aerial.jpg'
     },
     {
       city: 'Rotterdam', country: 'Netherlands', role: 'European operations and customs',

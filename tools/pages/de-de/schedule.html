@@ -1,0 +1,109 @@
+<!--{"title":"Abfahrtsplan","desc":"Feste wöchentliche Abfahrten zwischen Halifax, Bremerhaven und Rotterdam. Nach Richtung, Monat und Schiff filterbar.","nav":"schedule"}-->
+
+<section class="pagehead">
+  <div class="pagehead__bg"><img src="assets/img/de-terminal-aerial.jpg" alt="" aria-hidden="true" width="1600" height="893"></div>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Brotkrumennavigation"><a href="index.html">Start</a><span>/</span><span>Abfahrtsplan</span></nav>
+    <h1 class="h1">Abfahrtsplan</h1>
+    <p class="lede">Ostwärts verlässt Halifax freitags, westwärts verlässt Rotterdam dienstags. Bremerhaven wird auf der Ostroute rund neun Tage nach Halifax angelaufen, Rotterdam zwei Tage später. Die Spalte Platz zeigt, wie viel unseres wöchentlichen Kontingents noch offen ist.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="grid g-3" style="margin-bottom:2.4rem">
+      <div class="card" data-next-sailing="eastbound">
+        <span class="toolbar__label">Nächste Abfahrt ostwärts</span>
+        <span class="toolbar__val" data-ns-value>&mdash;</span>
+        <span class="toolbar__meta" data-ns-meta></span>
+      </div>
+      <div class="card" data-next-sailing="westbound">
+        <span class="toolbar__label">Nächste Abfahrt westwärts</span>
+        <span class="toolbar__val" data-ns-value>&mdash;</span>
+        <span class="toolbar__meta" data-ns-meta></span>
+      </div>
+      <div class="card card--navy">
+        <span class="toolbar__label" style="color:#8FAAC5">Dokumentenschluss</span>
+        <span class="toolbar__val" style="color:#fff">48 Stunden vor Abfahrt</span>
+        <span class="toolbar__meta" style="color:#B9CCDE">Später hängt es von der Reederei ab, fragen Sie lieber nach.</span>
+      </div>
+    </div>
+
+    <div class="filters">
+      <div class="field grow">
+        <label for="schedule-q">Schiff, Reise oder Hafen suchen</label>
+        <input id="schedule-q" type="search" placeholder="z. B. Cardonia, 2402E, Bremerhaven" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="schedule-month">Monat</label>
+        <select id="schedule-month"><option value="all">Alle Monate</option></select>
+      </div>
+      <div class="field" style="min-width:0">
+        <span class="lbl" id="dirlabel">Richtung</span>
+        <div class="flex gap-1 wrapf" role="group" aria-labelledby="dirlabel">
+          <button class="chip" type="button" data-filter-dir="all" aria-pressed="true">Alle</button>
+          <button class="chip" type="button" data-filter-dir="eastbound" aria-pressed="false">Halifax nach Europa</button>
+          <button class="chip" type="button" data-filter-dir="westbound" aria-pressed="false">Europa nach Halifax</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="results-meta">
+      <span id="schedule-count">Abfahrten werden geladen …</span>
+      <span>Zeiten gelten lokal im Abfahrtshafen. Demonstrationsdaten: Schiffsnamen sind beispielhaft.</span>
+    </div>
+
+    <div class="tablewrap">
+      <table class="dtable">
+        <caption class="sr-only">Geplante Abfahrten zwischen Halifax, Bremerhaven und Rotterdam</caption>
+        <thead>
+          <tr>
+            <th scope="col"><button type="button" data-sort="vessel">Schiff <span class="caret">&#8597;</span></button></th>
+            <th scope="col">Route</th>
+            <th scope="col" aria-sort="ascending"><button type="button" data-sort="etd">Abfahrt <span class="caret">&#8597;</span></button></th>
+            <th scope="col"><button type="button" data-sort="eta">Ankunft <span class="caret">&#8597;</span></button></th>
+            <th scope="col">Dok.-Schluss</th>
+            <th scope="col"><button type="button" data-sort="space">Platz <span class="caret">&#8597;</span></button></th>
+            <th scope="col">Status</th>
+            <th scope="col"><span class="sr-only">Buchen</span></th>
+          </tr>
+        </thead>
+        <tbody id="schedule-body"></tbody>
+      </table>
+    </div>
+
+    <div class="center mt-3">
+      <button class="btn btn--ghost" type="button" id="schedule-more" hidden>Weitere Abfahrten anzeigen</button>
+    </div>
+  </div>
+</section>
+
+<section class="section section--ice section--line">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Den Plan lesen</p>
+        <h2 class="h2">Was die Spalten bedeuten</h2>
+        <dl class="speclist" style="grid-template-columns:1fr">
+          <div><dt class="k">Abfahrt</dt><dd class="v">Auslaufen, 06:00 Ortszeit</dd></div>
+          <div><dt class="k">Ankunft</dt><dd class="v">Erste Leine an Land, Rotterdam</dd></div>
+          <div><dt class="k">Über Bremerhaven</dt><dd class="v">Rund neun Tage ab Halifax</dd></div>
+          <div><dt class="k">Dok.-Schluss</dt><dd class="v">Letzte Annahme der Ausfuhrpapiere</dd></div>
+          <div><dt class="k">Platz</dt><dd class="v">Restkontingent über alle Equipmentarten</dd></div>
+          <div><dt class="k">Buchbar</dt><dd class="v">Platz zu veröffentlichten Raten</dd></div>
+          <div><dt class="k">Fast ausgebucht</dt><dd class="v">Unter 15 Prozent frei</dd></div>
+        </dl>
+      </div>
+      <div>
+        <p class="eyebrow">Feste Vereinbarungen</p>
+        <h2 class="h2">Kontingent im Vertrag</h2>
+        <p>Regelmäßige Versender halten garantierten Wochenplatz. Das schützt Sie, wenn die Hochsaison kommt und Spotladung als Erstes gerollt wird. Wir prüfen das Kontingent jedes Quartal gegen die tatsächlich verladenen Mengen.</p>
+        <p>Saisongeschäft läuft anders. Wer im Herbst viel und im Frühjahr wenig verschifft, kann ungleich verteiltes Kontingent halten. Das vereinbaren wir lieber vorher, als Ihnen Platz zu berechnen, den Sie nie brauchen wollten.</p>
+        <div class="btn-row mt-3">
+          <a class="btn" href="quote.html">Kontingent anfragen</a>
+          <a class="btn btn--ghost" href="contact.html">Mit dem Betrieb sprechen</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

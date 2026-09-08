@@ -1,0 +1,109 @@
+<!--{"title":"Horaire des départs","desc":"Départs hebdomadaires à jour fixe entre Halifax, Bremerhaven et Rotterdam. Filtrable par sens, mois et navire.","nav":"schedule"}-->
+
+<section class="pagehead">
+  <div class="pagehead__bg"><img src="assets/img/rotterdam-cranes.jpg" alt="" aria-hidden="true" width="1239" height="569"></div>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Fil d&rsquo;Ariane"><a href="index.html">Accueil</a><span>/</span><span>Horaire des départs</span></nav>
+    <h1 class="h1">Horaire des départs</h1>
+    <p class="lede">Vers l&rsquo;est, le navire quitte Halifax le vendredi. Vers l&rsquo;ouest, il quitte Rotterdam le mardi. Bremerhaven est touché environ neuf jours après Halifax, Rotterdam deux jours plus tard. La colonne Espace indique ce qu&rsquo;il reste de notre allocation hebdomadaire.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="grid g-3" style="margin-bottom:2.4rem">
+      <div class="card" data-next-sailing="eastbound">
+        <span class="toolbar__label">Prochain départ vers l&rsquo;est</span>
+        <span class="toolbar__val" data-ns-value>&mdash;</span>
+        <span class="toolbar__meta" data-ns-meta></span>
+      </div>
+      <div class="card" data-next-sailing="westbound">
+        <span class="toolbar__label">Prochain départ vers l&rsquo;ouest</span>
+        <span class="toolbar__val" data-ns-value>&mdash;</span>
+        <span class="toolbar__meta" data-ns-meta></span>
+      </div>
+      <div class="card card--navy">
+        <span class="toolbar__label" style="color:#8FAAC5">Heure limite des documents</span>
+        <span class="toolbar__val" style="color:#fff">48 heures avant le départ</span>
+        <span class="toolbar__meta" style="color:#B9CCDE">Au-delà, cela dépend du transporteur : demandez plutôt que de présumer.</span>
+      </div>
+    </div>
+
+    <div class="filters">
+      <div class="field grow">
+        <label for="schedule-q">Chercher un navire, un voyage ou un port</label>
+        <input id="schedule-q" type="search" placeholder="p. ex. Cardonia, 2402E, Bremerhaven" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="schedule-month">Mois</label>
+        <select id="schedule-month"><option value="all">Tous les mois</option></select>
+      </div>
+      <div class="field" style="min-width:0">
+        <span class="lbl" id="dirlabel">Sens</span>
+        <div class="flex gap-1 wrapf" role="group" aria-labelledby="dirlabel">
+          <button class="chip" type="button" data-filter-dir="all" aria-pressed="true">Tous</button>
+          <button class="chip" type="button" data-filter-dir="eastbound" aria-pressed="false">Halifax vers l&rsquo;Europe</button>
+          <button class="chip" type="button" data-filter-dir="westbound" aria-pressed="false">Europe vers Halifax</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="results-meta">
+      <span id="schedule-count">Chargement des départs…</span>
+      <span>Heures locales au port de départ. Données de démonstration : les noms de navires sont indicatifs.</span>
+    </div>
+
+    <div class="tablewrap">
+      <table class="dtable">
+        <caption class="sr-only">Départs prévus entre Halifax, Bremerhaven et Rotterdam</caption>
+        <thead>
+          <tr>
+            <th scope="col"><button type="button" data-sort="vessel">Navire <span class="caret">&#8597;</span></button></th>
+            <th scope="col">Route</th>
+            <th scope="col" aria-sort="ascending"><button type="button" data-sort="etd">Départ <span class="caret">&#8597;</span></button></th>
+            <th scope="col"><button type="button" data-sort="eta">Arrivée <span class="caret">&#8597;</span></button></th>
+            <th scope="col">Limite doc.</th>
+            <th scope="col"><button type="button" data-sort="space">Espace <span class="caret">&#8597;</span></button></th>
+            <th scope="col">État</th>
+            <th scope="col"><span class="sr-only">Réserver</span></th>
+          </tr>
+        </thead>
+        <tbody id="schedule-body"></tbody>
+      </table>
+    </div>
+
+    <div class="center mt-3">
+      <button class="btn btn--ghost" type="button" id="schedule-more" hidden>Afficher plus de départs</button>
+    </div>
+  </div>
+</section>
+
+<section class="section section--ice section--line">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Lire l&rsquo;horaire</p>
+        <h2 class="h2">Ce que veulent dire les colonnes</h2>
+        <dl class="speclist" style="grid-template-columns:1fr">
+          <div><dt class="k">Départ</dt><dd class="v">Appareillage, 6 h heure locale</dd></div>
+          <div><dt class="k">Arrivée</dt><dd class="v">Première amarre à Rotterdam</dd></div>
+          <div><dt class="k">Via Bremerhaven</dt><dd class="v">Environ neuf jours après Halifax</dd></div>
+          <div><dt class="k">Limite doc.</dt><dd class="v">Dernière acceptation des documents d&rsquo;exportation</dd></div>
+          <div><dt class="k">Espace</dt><dd class="v">Allocation restante, tous types d&rsquo;équipement</dd></div>
+          <div><dt class="k">Réservation ouverte</dt><dd class="v">Espace disponible aux taux publiés</dd></div>
+          <div><dt class="k">Presque complet</dt><dd class="v">Moins de 15 pour cent restant</dd></div>
+        </dl>
+      </div>
+      <div>
+        <p class="eyebrow">Ententes permanentes</p>
+        <h2 class="h2">Allocation contractuelle</h2>
+        <p>Les expéditeurs réguliers détiennent un espace hebdomadaire garanti, ce qui vous protège quand la haute saison arrive et que la marchandise au comptant se fait reporter. Nous révisons l&rsquo;allocation chaque trimestre par rapport aux volumes réellement embarqués.</p>
+        <p>Les programmes saisonniers fonctionnent autrement. Un expéditeur de produits de la mer dont l&rsquo;automne est chargé et le printemps tranquille peut détenir une allocation inégale sur l&rsquo;année, et nous préférons en convenir d&rsquo;avance plutôt que de vous facturer un espace que vous n&rsquo;alliez jamais utiliser.</p>
+        <div class="btn-row mt-3">
+          <a class="btn" href="quote.html">Demander une allocation</a>
+          <a class="btn btn--ghost" href="contact.html">Parler aux opérations</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

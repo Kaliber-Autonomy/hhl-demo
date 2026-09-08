@@ -53,6 +53,48 @@ old name, then rebuild.
 
 ---
 
+## Languages and branches
+
+Two regional branches, four locales, one build.
+
+| Locale | URL | Who it is for |
+|---|---|---|
+| `en-CA` | `/` | Canada, English. Canonical, and the original URL |
+| `fr-CA` | `/fr-ca/` | Canada, French |
+| `de-DE` | `/de-de/` | Germany, German |
+| `en-DE` | `/en-de/` | Germany, English |
+
+**Chrome strings** (navigation, footer, form labels, and every string the
+schedule and tracker render at runtime) live in `tools/i18n/<code>.json`. All
+four files carry an identical key set; the build fails loudly if a core page is
+missing a translation.
+
+**Page bodies** live in `tools/pages/<locale-dir>/`. Six core pages are fully
+translated in every locale: home, services, schedule, tracking, contact and the
+German branch. Any other page falls back to the English body with a notice in
+the reader's own language, so navigation never dead-ends.
+
+**Runtime strings** are emitted to `site/assets/js/i18n/<code>.js` by the build
+and read by `site.js` through a `T()` lookup with an English fallback. Data
+strings that the site owns — shipment statuses, milestone labels, equipment
+types, document names — are translated through a `jsXlat` map keyed by the
+English text, so `data.js` needs no keys of its own. Shipper, consignee and
+commodity stay as entered, the way a real operations system holds them.
+
+Every page carries `hreflang` alternates for all four locales plus `x-default`,
+and a region and language picker in the utility bar that lands you on the same
+page in the locale you pick.
+
+## The German branch
+
+Bremerhaven, not a second office in Rotterdam. That choice is grounded: on the
+real transatlantic services that run this corridor, Bremerhaven is about nine
+days from Halifax and Rotterdam about eleven, so the German call genuinely comes
+first. The branch page carries the port's own figures (5.21m TEU in 2025,
+4,930 m of quay, 14 berths, 14.5 m depth) and the honest cash-flow comparison
+between German import VAT collected at the border and Dutch Article 23
+deferment. Sources for all of it are on the sources page.
+
 ## Pages
 
 | Page | What it does |

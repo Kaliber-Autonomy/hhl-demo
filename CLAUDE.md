@@ -79,6 +79,39 @@ the first draft. When editing copy:
 - No aphoristic closing lines.
 - Prefer a checkable number with a source over a confident adjective.
 
+## Four locales, two branches
+
+`en-CA` at the root, `fr-CA`, `de-DE` and `en-DE` in subdirectories. Editing rules:
+
+- **Chrome strings**: `tools/i18n/<code>.json`. Keep the key sets identical
+  across all four; a missing key silently drops a label.
+- **Page bodies**: `tools/pages/<dir>/`. The six core pages listed in `CORE` in
+  `tools/build.js` must exist in every locale or the build prints `!!` warnings.
+  Everything else falls back to the English body plus a translated notice.
+- **Asset paths**: bodies are written for the root locale, so they use
+  `assets/…`. The build rewrites those to `../assets/…` for subdirectory
+  locales. Never hard-code `../` in a page body.
+- **Runtime strings**: any string JavaScript renders goes in the JSON under a
+  `js*` key; the build ships every `js*` key to
+  `site/assets/js/i18n/<code>.js`. `site.js` reads them through `T()`.
+- **Data strings** (statuses, milestones, equipment, documents) go in `jsXlat`,
+  keyed by the English text, and are read through `DS()`. Do not rename `DS` to
+  `D` — `D` is already the data module at the top of `site.js`, and the
+  collision silently breaks the whole tracking render.
+
+## The German branch is Bremerhaven, and that is a factual choice
+
+Not decoration. The real services on this corridor call Bremerhaven about nine
+days out of Halifax and Rotterdam about eleven, so the German call really is
+first. Sailings carry `etaBremerhaven` alongside `eta`. If anyone rewrites the
+route, keep the two-day gap or the whole argument of the German branch page
+stops being true.
+
+The cash-flow comparison on that page is also real and worth preserving: German
+import VAT is collected at the border and reclaimed as input tax, while the
+Netherlands allows deferment under an Article 23 licence. That is a genuine
+reason to choose an entry port, and it is the most useful thing on the page.
+
 ## Gotchas already hit and fixed
 
 Do not reintroduce these:

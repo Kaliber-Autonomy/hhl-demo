@@ -1,0 +1,109 @@
+<!--{"title":"Sailing schedule","desc":"Fixed-day weekly sailings between Halifax and Rotterdam. Filter by direction, month and vessel, and see remaining space on every voyage.","nav":"schedule"}-->
+
+<section class="pagehead">
+  <div class="pagehead__bg"><img src="assets/img/rotterdam-cranes.jpg" alt="" aria-hidden="true" width="1239" height="569"></div>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Sailing schedule</span></nav>
+    <h1 class="h1">Sailing schedule</h1>
+    <p class="lede">Eastbound leaves Halifax on Friday, westbound leaves Rotterdam on Tuesday. The space column shows how much of our weekly allocation is still open across all equipment types.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="grid g-3" style="margin-bottom:2.4rem">
+      <div class="card" data-next-sailing="eastbound">
+        <span class="toolbar__label">Next eastbound</span>
+        <span class="toolbar__val" data-ns-value>—</span>
+        <span class="toolbar__meta" data-ns-meta></span>
+      </div>
+      <div class="card" data-next-sailing="westbound">
+        <span class="toolbar__label">Next westbound</span>
+        <span class="toolbar__val" data-ns-value>—</span>
+        <span class="toolbar__meta" data-ns-meta></span>
+      </div>
+      <div class="card card--navy">
+        <span class="toolbar__label" style="color:#8FAAC5">Documentation cut-off</span>
+        <span class="toolbar__val" style="color:#fff">48 hours before departure</span>
+        <span class="toolbar__meta" style="color:#B9CCDE">Later than that and it depends on the carrier, so ask rather than assume.</span>
+      </div>
+    </div>
+
+    <div class="filters">
+      <div class="field grow">
+        <label for="schedule-q">Search vessel, voyage or port</label>
+        <input id="schedule-q" type="search" placeholder="e.g. Cardonia, 2402E, Rotterdam" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="schedule-month">Month</label>
+        <select id="schedule-month"><option value="all">All months</option></select>
+      </div>
+      <div class="field" style="min-width:0">
+        <span class="lbl" id="dirlabel">Direction</span>
+        <div class="flex gap-1 wrapf" role="group" aria-labelledby="dirlabel">
+          <button class="chip" type="button" data-filter-dir="all" aria-pressed="true">All</button>
+          <button class="chip" type="button" data-filter-dir="eastbound" aria-pressed="false">Halifax to Rotterdam</button>
+          <button class="chip" type="button" data-filter-dir="westbound" aria-pressed="false">Rotterdam to Halifax</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="results-meta">
+      <span id="schedule-count">Loading sailings…</span>
+      <span>Times are local to the port of departure. Demonstration data: vessel names are illustrative.</span>
+    </div>
+
+    <div class="tablewrap">
+      <table class="dtable">
+        <caption class="sr-only">Scheduled sailings between Halifax and Rotterdam</caption>
+        <thead>
+          <tr>
+            <th scope="col"><button type="button" data-sort="vessel">Vessel <span class="caret">↕</span></button></th>
+            <th scope="col">Route</th>
+            <th scope="col" aria-sort="ascending"><button type="button" data-sort="etd">Departs <span class="caret">↕</span></button></th>
+            <th scope="col"><button type="button" data-sort="eta">Arrives <span class="caret">↕</span></button></th>
+            <th scope="col">Doc cut-off</th>
+            <th scope="col"><button type="button" data-sort="space">Space <span class="caret">↕</span></button></th>
+            <th scope="col">Status</th>
+            <th scope="col"><span class="sr-only">Book</span></th>
+          </tr>
+        </thead>
+        <tbody id="schedule-body"></tbody>
+      </table>
+    </div>
+
+    <div class="center mt-3">
+      <button class="btn btn--ghost" type="button" id="schedule-more" hidden>Show more sailings</button>
+    </div>
+  </div>
+</section>
+
+<section class="section section--ice section--line">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Reading the schedule</p>
+        <h2 class="h2">What the columns mean</h2>
+        <dl class="speclist" style="grid-template-columns:1fr">
+          <div><dt class="k">Departs</dt><dd class="v">Vessel sails, 06:00 local</dd></div>
+          <div><dt class="k">Arrives</dt><dd class="v">First line ashore, about 11 days out</dd></div>
+          <div><dt class="k">Doc cut-off</dt><dd class="v">Last acceptance of export documents</dd></div>
+          <div><dt class="k">Space</dt><dd class="v">Remaining allocation across all equipment</dd></div>
+          <div><dt class="k">Booking open</dt><dd class="v">Space available at published rates</dd></div>
+          <div><dt class="k">Nearly full</dt><dd class="v">Under 15 per cent remaining</dd></div>
+          <div><dt class="k">Closed</dt><dd class="v">Past documentation cut-off</dd></div>
+        </dl>
+      </div>
+      <div>
+        <p class="eyebrow">Standing arrangements</p>
+        <h2 class="h2">Contract allocation</h2>
+        <p>Regular shippers hold guaranteed weekly space, which is what protects you when peak season arrives and spot cargo starts getting rolled. We review the allocation each quarter against what you actually lifted.</p>
+        <p>Seasonal programmes work differently. A seafood shipper with a heavy autumn and a quiet spring can hold uneven allocation across the year, and we would rather agree that up front than watch you pay for space you were never going to use.</p>
+        <div class="btn-row mt-3">
+          <a class="btn" href="quote.html">Request allocation</a>
+          <a class="btn btn--ghost" href="contact.html">Speak to operations</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

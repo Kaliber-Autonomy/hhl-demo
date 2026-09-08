@@ -1,0 +1,158 @@
+<!--{"title":"Kontakt","desc":"Erreichen Sie den Betrieb in Bremerhaven oder Halifax, oder schreiben Sie uns. Antwort in der Regel am selben Arbeitstag.","nav":"contact"}-->
+
+<section class="pagehead">
+  <div class="pagehead__bg"><img src="assets/img/de-office.jpg" alt="" aria-hidden="true" width="1100" height="821"></div>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Brotkrumennavigation"><a href="index.html">Start</a><span>/</span><span>Kontakt</span></nav>
+    <h1 class="h1">Sprechen Sie mit dem Standort, der zu Ihnen passt</h1>
+    <p class="lede">Drei Schreibtische, eine Akte. Rufen Sie den an, der gerade Arbeitszeit hat.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="split split--wide-left">
+      <div>
+        <p class="eyebrow">Nachricht senden</p>
+        <h2 class="h2">Sagen Sie uns, worum es geht</h2>
+        <form data-plain data-success="contact-done" novalidate>
+          <div class="grid g-2">
+            <div class="field">
+              <label for="c-name">Ihr Name <span class="req" aria-hidden="true">*</span></label>
+              <input id="c-name" type="text" required autocomplete="name">
+              <p class="err"></p>
+            </div>
+            <div class="field">
+              <label for="c-company">Unternehmen</label>
+              <input id="c-company" type="text" autocomplete="organization">
+            </div>
+          </div>
+          <div class="grid g-2">
+            <div class="field">
+              <label for="c-email">E-Mail <span class="req" aria-hidden="true">*</span></label>
+              <input id="c-email" type="email" required autocomplete="email">
+              <p class="err"></p>
+            </div>
+            <div class="field">
+              <label for="c-phone">Telefon</label>
+              <input id="c-phone" type="tel" autocomplete="tel">
+              <p class="err"></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="c-topic">Worum geht es? <span class="req" aria-hidden="true">*</span></label>
+            <select id="c-topic" required>
+              <option value="">Bitte wählen</option>
+              <option>Neue Sendung oder Ratenanfrage</option>
+              <option>Bestehende Buchung</option>
+              <option>Zoll, Tarife oder Einreihung</option>
+              <option>Zolllager und Sammelladung</option>
+              <option>Projekt- oder Übermaßladung</option>
+              <option>Buchhaltung und Rechnungen</option>
+              <option>Karriere</option>
+              <option>Etwas anderes</option>
+            </select>
+            <p class="err"></p>
+          </div>
+          <div class="field">
+            <label for="c-msg">Nachricht <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="c-msg" required placeholder="Relation, Ware, Menge und Termin sind die vier Angaben, mit denen wir vernünftig antworten können."></textarea>
+            <p class="err"></p>
+          </div>
+          <div class="field">
+            <label class="checkline"><input type="checkbox" required><span>Ich bin einverstanden, dass meine Angaben zur Beantwortung dieser Anfrage verwendet werden. <span class="req" aria-hidden="true">*</span></span></label>
+            <p class="err"></p>
+          </div>
+          <button class="btn btn--lg" type="submit">Nachricht senden</button>
+          <p class="tiny muted mt-2">Demonstrationsseite. Es wird nichts übertragen, und keine Angabe verlässt Ihren Browser.</p>
+        </form>
+        <div class="card" id="contact-done" hidden style="border-left:3px solid var(--ok)">
+          <p class="eyebrow" style="color:var(--ok)">Nachricht eingegangen</p>
+          <h3 class="h3">Danke. Wir melden uns am selben Arbeitstag.</h3>
+          <p class="mb-0">Dies ist eine Demonstrationsseite, es wurde also nichts gesendet.</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow">Standorte</p>
+        <h2 class="h2">Bremerhaven, Halifax und Rotterdam</h2>
+
+        <article class="card card--flush" style="margin-bottom:1.2rem">
+          <div class="card__media" style="aspect-ratio:21/8"><img src="assets/img/de-terminal-aerial.jpg" alt="Containerterminal an der Nordseeküste" width="1600" height="893" loading="lazy"></div>
+          <div class="card__body">
+          <div class="flex between items-center wrapf gap-1">
+            <h3 class="h3 mb-0">Bremerhaven, Deutschland</h3>
+            <span class="badge badge--quiet">Deutsche Niederlassung</span>
+          </div>
+          <p class="small muted mt-1">Zollabwicklung, Nachlauf und deutscher Vertrieb</p>
+          <p class="mb-0">Bremerhaven, Bremen<br><span class="tiny muted">Anschrift wird mit der Handelsregistereintragung bestätigt</span></p>
+          <dl class="speclist" style="grid-template-columns:1fr">
+            <div><dt class="k">Telefon</dt><dd class="v">Wird mit der Eintragung vergeben</dd></div>
+            <div><dt class="k">E-Mail</dt><dd class="v"><a href="mailto:bremerhaven@example.com">bremerhaven@example.com</a></dd></div>
+            <div><dt class="k">Zeiten</dt><dd class="v">Mo bis Fr, 08:00 bis 18:00 MEZ</dd></div>
+          </dl>
+          </div>
+        </article>
+
+        <article class="card card--flush" style="margin-bottom:1.2rem">
+          <div class="card__media" style="aspect-ratio:21/8"><img src="assets/img/city-halifax.jpg" alt="Uferpromenade von Halifax" width="908" height="600" loading="lazy"></div>
+          <div class="card__body">
+          <div class="flex between items-center wrapf gap-1">
+            <h3 class="h3 mb-0">Halifax, Kanada</h3>
+            <span class="badge badge--quiet">Sitz</span>
+          </div>
+          <p class="small muted mt-1">Kanadischer Betrieb, Vertrieb und Buchhaltung</p>
+          <p class="mb-0">Halifax, Nova Scotia<br><span class="tiny muted">Anschrift wird mit der Handelsregistereintragung bestätigt</span></p>
+          <dl class="speclist" style="grid-template-columns:1fr">
+            <div><dt class="k">Telefon</dt><dd class="v">+1 902 555 0100</dd></div>
+            <div><dt class="k">E-Mail</dt><dd class="v"><a href="mailto:halifax@example.com">halifax@example.com</a></dd></div>
+            <div><dt class="k">Zeiten</dt><dd class="v">Mo bis Fr, 08:00 bis 18:00 AT</dd></div>
+          </dl>
+          </div>
+        </article>
+
+        <div class="card card--navy">
+          <h3 class="h3">Ladungsnotfall</h3>
+          <p>Reeferalarm, Schaden, Schiffsverspätung oder alles, was nicht bis zur Geschäftszeit warten kann. Ein Bereitschaftsdienst geht rund um die Uhr ans Telefon, an jedem Tag im Jahr.</p>
+          <p class="mb-0" style="font-family:var(--font-display);font-size:1.3rem;color:#fff">+1 902 555 0199</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--ice section--line">
+  <div class="wrap">
+    <div class="grid g-4">
+      <div class="card"><h3 class="h4">Raten und Buchungen</h3><p class="small">Neue Anfragen, Kontingent und Vertragsraten.</p><p class="small mb-0"><a href="quote.html">Angebot anfordern</a></p></div>
+      <div class="card"><h3 class="h4">Laufende Sendungen</h3><p class="small">Status, Dokumente und Zustellung.</p><p class="small mb-0"><a href="tracking.html">Sendung verfolgen</a></p></div>
+      <div class="card"><h3 class="h4">Zollfragen</h3><p class="small">Einreihung, Ursprung und Abgaben.</p><p class="small mb-0"><a href="bremerhaven.html">Zoll in Bremerhaven</a></p></div>
+      <div class="card" id="careers"><h3 class="h4">Karriere</h3><p class="small">Wir stellen erfahrene Hafen- und Zollleute an beiden Enden ein.</p><p class="small mb-0">Schreiben Sie an <a href="mailto:bremerhaven@example.com">bremerhaven@example.com</a></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">Das Kleingedruckte</p>
+    <h2 class="h2">Hinweise</h2>
+    <div class="acc mt-3">
+      <div class="acc__item">
+        <button class="acc__btn" type="button" aria-expanded="false">Datenschutz</button>
+        <div class="acc__panel"><p class="mb-0">Diese Demonstrationsseite erhebt nichts. Keine Analyse, keine Werbetechnik, keine Dritteinbindung. Eine einzige lokale Browsereinstellung merkt sich, dass Sie den Hinweis geschlossen haben, und sie verlässt Ihr Gerät nie. Die spätere Produktivseite erhält eine vollständige Datenschutzerklärung mit Verantwortlichem und Rechtsgrundlage je Verarbeitungszweck.</p></div>
+      </div>
+      <div class="acc__item">
+        <button class="acc__btn" type="button" aria-expanded="false">Beförderungsbedingungen</button>
+        <div class="acc__panel"><p class="mb-0">Sendungen laufen unter einem Konnossement mit den Bedingungen des Beförderers, einschließlich der geltenden Haftungsbegrenzung. Hier steht Platzhaltertext. Die endgültigen Bedingungen werden vor der ersten kommerziellen Buchung mit seerechtlicher Beratung in beiden Ländern erstellt.</p></div>
+      </div>
+      <div class="acc__item">
+        <button class="acc__btn" type="button" aria-expanded="false">Barrierefreiheit</button>
+        <div class="acc__panel"><p class="mb-0">Diese Seite ist auf Stufe AA der Web Content Accessibility Guidelines 2.2 ausgelegt. Sie lässt sich allein mit der Tastatur bedienen, berücksichtigt die Einstellung für reduzierte Bewegung, und jedes Bedienelement trägt einen zugänglichen Namen. Eine unabhängige Prüfung hat noch nicht stattgefunden. Wenn Ihnen etwas auffällt, sagen Sie es uns, dann beheben wir es.</p></div>
+      </div>
+      <div class="acc__item">
+        <button class="acc__btn" type="button" aria-expanded="false">Hinweis zur Demonstration</button>
+        <div class="acc__panel"><p>Diese Seite nennt echte Organisationen, weil sie von ihnen veröffentlichte Angaben zitiert. Keine davon steht mit dieser Demonstration in Verbindung oder empfiehlt sie.</p><p class="mb-0">Alles hier ist ein Prototyp. Firmenangaben, Anschriften, Telefonnummern, Raten und Sendungsdaten sind Platzhalter. Abfahrtsplan und Sendungsverfolgung laufen auf Demonstrationsdaten. Angaben zu Häfen, Route und Handelsregeln sind recherchiert und auf der <a href="sources.html">Quellenseite</a> belegt. Keine hier abgeschickte Buchung erreicht jemanden.</p></div>
+      </div>
+    </div>
+  </div>
+</section>

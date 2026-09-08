@@ -1,0 +1,158 @@
+<!--{"title":"Nous joindre","desc":"Joignez les opérations à Halifax, à Bremerhaven ou à Rotterdam, ou écrivez-nous. Réponse en général le jour ouvrable même.","nav":"contact"}-->
+
+<section class="pagehead">
+  <div class="pagehead__bg"><img src="assets/img/bridge-fog.jpg" alt="" aria-hidden="true" width="605" height="891"></div>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Fil d&rsquo;Ariane"><a href="index.html">Accueil</a><span>/</span><span>Nous joindre</span></nav>
+    <h1 class="h1">Parlez au bureau qui vous convient</h1>
+    <p class="lede">Trois bureaux, un seul dossier. Appelez celui qui est dans ses heures d&rsquo;ouverture.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="split split--wide-left">
+      <div>
+        <p class="eyebrow">Envoyer un message</p>
+        <h2 class="h2">Dites-nous ce qu&rsquo;il vous faut</h2>
+        <form data-plain data-success="contact-done" novalidate>
+          <div class="grid g-2">
+            <div class="field">
+              <label for="c-name">Votre nom <span class="req" aria-hidden="true">*</span></label>
+              <input id="c-name" type="text" required autocomplete="name">
+              <p class="err"></p>
+            </div>
+            <div class="field">
+              <label for="c-company">Entreprise</label>
+              <input id="c-company" type="text" autocomplete="organization">
+            </div>
+          </div>
+          <div class="grid g-2">
+            <div class="field">
+              <label for="c-email">Courriel <span class="req" aria-hidden="true">*</span></label>
+              <input id="c-email" type="email" required autocomplete="email">
+              <p class="err"></p>
+            </div>
+            <div class="field">
+              <label for="c-phone">Téléphone</label>
+              <input id="c-phone" type="tel" autocomplete="tel">
+              <p class="err"></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="c-topic">De quoi s&rsquo;agit-il ? <span class="req" aria-hidden="true">*</span></label>
+            <select id="c-topic" required>
+              <option value="">Veuillez choisir</option>
+              <option>Nouvel envoi ou demande de taux</option>
+              <option>Réservation existante</option>
+              <option>Douanes, tarifs ou classement</option>
+              <option>Entreposage et groupage</option>
+              <option>Cargaison de projet ou hors gabarit</option>
+              <option>Comptabilité et facturation</option>
+              <option>Carrières</option>
+              <option>Autre chose</option>
+            </select>
+            <p class="err"></p>
+          </div>
+          <div class="field">
+            <label for="c-msg">Message <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="c-msg" required placeholder="Route, marchandise, volume et échéance sont les quatre éléments qui nous permettent de répondre correctement."></textarea>
+            <p class="err"></p>
+          </div>
+          <div class="field">
+            <label class="checkline"><input type="checkbox" required><span>J&rsquo;accepte que mes coordonnées servent à répondre à cette demande. <span class="req" aria-hidden="true">*</span></span></label>
+            <p class="err"></p>
+          </div>
+          <button class="btn btn--lg" type="submit">Envoyer le message</button>
+          <p class="tiny muted mt-2">Site de démonstration. Rien n&rsquo;est transmis et aucune donnée ne quitte votre navigateur.</p>
+        </form>
+        <div class="card" id="contact-done" hidden style="border-left:3px solid var(--ok)">
+          <p class="eyebrow" style="color:var(--ok)">Message reçu</p>
+          <h3 class="h3">Merci. Nous vous revenons le jour ouvrable même.</h3>
+          <p class="mb-0">Ceci est une démonstration, alors rien n&rsquo;a réellement été envoyé.</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow">Bureaux</p>
+        <h2 class="h2">Halifax, Bremerhaven et Rotterdam</h2>
+
+        <article class="card card--flush" style="margin-bottom:1.2rem">
+          <div class="card__media" style="aspect-ratio:21/8"><img src="assets/img/city-halifax.jpg" alt="Promenade du port de Halifax" width="908" height="600" loading="lazy"></div>
+          <div class="card__body">
+          <div class="flex between items-center wrapf gap-1">
+            <h3 class="h3 mb-0">Halifax, Canada</h3>
+            <span class="badge badge--quiet">Siège social</span>
+          </div>
+          <p class="small muted mt-1">Opérations canadiennes, ventes et comptabilité</p>
+          <p class="mb-0">Halifax, Nouvelle-Écosse<br><span class="tiny muted">Adresse municipale confirmée à la constitution en société</span></p>
+          <dl class="speclist" style="grid-template-columns:1fr">
+            <div><dt class="k">Téléphone</dt><dd class="v">+1 902 555 0100</dd></div>
+            <div><dt class="k">Courriel</dt><dd class="v"><a href="mailto:halifax@example.com">halifax@example.com</a></dd></div>
+            <div><dt class="k">Heures</dt><dd class="v">Lun au ven, 8 h à 18 h HA</dd></div>
+          </dl>
+          </div>
+        </article>
+
+        <article class="card card--flush" style="margin-bottom:1.2rem">
+          <div class="card__media" style="aspect-ratio:21/8"><img src="assets/img/de-terminal-aerial.jpg" alt="Terminal à conteneurs sur la côte de la mer du Nord" width="1600" height="893" loading="lazy"></div>
+          <div class="card__body">
+          <div class="flex between items-center wrapf gap-1">
+            <h3 class="h3 mb-0">Bremerhaven, Allemagne</h3>
+            <span class="badge badge--quiet">Succursale allemande</span>
+          </div>
+          <p class="small muted mt-1">Dédouanement, post-acheminement et ventes en Allemagne</p>
+          <p class="mb-0">Bremerhaven, Brême<br><span class="tiny muted">Adresse confirmée à l&rsquo;inscription au registre</span></p>
+          <dl class="speclist" style="grid-template-columns:1fr">
+            <div><dt class="k">Téléphone</dt><dd class="v">Attribué à l&rsquo;inscription</dd></div>
+            <div><dt class="k">Courriel</dt><dd class="v"><a href="mailto:bremerhaven@example.com">bremerhaven@example.com</a></dd></div>
+            <div><dt class="k">Heures</dt><dd class="v">Lun au ven, 8 h à 18 h HEC</dd></div>
+          </dl>
+          </div>
+        </article>
+
+        <div class="card card--navy">
+          <h3 class="h3">Urgence marchandise</h3>
+          <p>Alarme de conteneur réfrigéré, dommage, retard de navire ou tout ce qui ne peut attendre les heures de bureau. Un agent de garde répond en tout temps, tous les jours de l&rsquo;année.</p>
+          <p class="mb-0" style="font-family:var(--font-display);font-size:1.3rem;color:#fff">+1 902 555 0199</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--ice section--line">
+  <div class="wrap">
+    <div class="grid g-4">
+      <div class="card"><h3 class="h4">Taux et réservations</h3><p class="small">Nouvelles demandes, allocation et taux contractuels.</p><p class="small mb-0"><a href="quote.html">Demander une soumission</a></p></div>
+      <div class="card"><h3 class="h4">Envois en cours</h3><p class="small">État, documents et modalités de livraison.</p><p class="small mb-0"><a href="tracking.html">Suivre un envoi</a></p></div>
+      <div class="card"><h3 class="h4">Questions de douane</h3><p class="small">Classement, origine et traitement des droits.</p><p class="small mb-0"><a href="services.html#customs">Comment fonctionne la douane ici</a></p></div>
+      <div class="card" id="careers"><h3 class="h4">Carrières</h3><p class="small">Nous embauchons des gens d&rsquo;expérience en port et en douane aux deux bouts.</p><p class="small mb-0">Écrivez à <a href="mailto:halifax@example.com">halifax@example.com</a></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">Mentions</p>
+    <h2 class="h2">Politiques</h2>
+    <div class="acc mt-3">
+      <div class="acc__item">
+        <button class="acc__btn" type="button" aria-expanded="false">Confidentialité</button>
+        <div class="acc__panel"><p class="mb-0">Ce site de démonstration ne recueille rien. Aucune analyse, aucune technologie publicitaire, aucun suivi par un tiers. Un seul réglage local du navigateur retient que vous avez fermé l&rsquo;avis, et il ne quitte jamais votre appareil. Le site de production portera une politique complète nommant le responsable du traitement et la base juridique de chaque finalité.</p></div>
+      </div>
+      <div class="acc__item">
+        <button class="acc__btn" type="button" aria-expanded="false">Conditions de transport</button>
+        <div class="acc__panel"><p class="mb-0">Les envois circuleront sous un connaissement reprenant les conditions du transporteur, y compris la limitation de responsabilité applicable. Le texte affiché ici est provisoire. Les conditions définitives seront rédigées avec un conseil en droit maritime dans les deux pays avant la première réservation commerciale.</p></div>
+      </div>
+      <div class="acc__item">
+        <button class="acc__btn" type="button" aria-expanded="false">Accessibilité</button>
+        <div class="acc__panel"><p class="mb-0">Ce site vise le niveau AA des Règles pour l&rsquo;accessibilité des contenus Web 2.2. Il fonctionne au clavier seul, respecte la préférence de mouvement réduit, et chaque commande porte un nom accessible. Aucune vérification indépendante n&rsquo;a encore eu lieu. Si quelque chose ne fonctionne pas pour vous, dites-le-nous et nous le corrigerons.</p></div>
+      </div>
+      <div class="acc__item">
+        <button class="acc__btn" type="button" aria-expanded="false">Avis de démonstration</button>
+        <div class="acc__panel"><p>Ce site nomme de vraies organisations parce qu&rsquo;il cite des données qu&rsquo;elles publient. Aucune d&rsquo;elles n&rsquo;a de lien avec cette démonstration ni ne la cautionne.</p><p class="mb-0">Tout ici est un prototype. Coordonnées, adresses, numéros de téléphone, taux et dossiers d&rsquo;envoi sont fictifs. L&rsquo;horaire et le suivi fonctionnent sur des données de démonstration. Les données sur les ports, la route et les règles commerciales sont documentées à la <a href="sources.html">page des sources</a>. Aucune réservation faite ici n&rsquo;atteint qui que ce soit.</p></div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,72 @@
+<!--{"title":"Suivre un envoi","desc":"Suivez votre conteneur : historique des mouvements, position du navire et état de chaque document.","nav":"tracking"}-->
+
+<section class="pagehead">
+  <div class="pagehead__bg"><img src="assets/img/ocean-aerial-ship.jpg" alt="" aria-hidden="true" width="1321" height="1075"></div>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Fil d&rsquo;Ariane"><a href="index.html">Accueil</a><span>/</span><span>Suivre un envoi</span></nav>
+    <h1 class="h1">Suivre un envoi</h1>
+    <p class="lede">Entrez une référence de réservation ou un numéro de conteneur. Vous verrez chaque mouvement consigné au dossier, la position du navire et l&rsquo;état de chaque document.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="card" style="max-width:760px">
+      <form id="track-form" novalidate>
+        <div class="field" style="margin-bottom:.75rem">
+          <label for="track-input">Référence de réservation ou numéro de conteneur</label>
+          <div class="flex gap-1 wrapf">
+            <input id="track-input" type="search" style="flex:1;min-width:240px" placeholder="HHL-2041 ou HHLU2841503" autocomplete="off" spellcheck="false">
+            <button class="btn" type="submit">Suivre l&rsquo;envoi</button>
+          </div>
+          <p class="hint">Les références ressemblent à HHL-2041. Les numéros de conteneur comptent quatre lettres et sept chiffres. Cette démonstration contient cinq envois d&rsquo;exemple.</p>
+        </div>
+      </form>
+      <div class="mt-2">
+        <p class="tiny muted" style="margin-bottom:.5rem">Références de démonstration à essayer :</p>
+        <div class="flex gap-1 wrapf">
+          <button class="chip" type="button" data-demo-ref="HHL-2041">HHL-2041 &middot; en mer</button>
+          <button class="chip" type="button" data-demo-ref="HHL-2115">HHL-2115 &middot; retenue en douane</button>
+          <button class="chip" type="button" data-demo-ref="HHL-1987">HHL-1987 &middot; livré</button>
+          <button class="chip" type="button" data-demo-ref="HHL-2103">HHL-2103 &middot; avant chargement</button>
+          <button class="chip" type="button" data-demo-ref="HHLU5560413">HHLU5560413 &middot; vers l&rsquo;ouest</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="track-result" class="mt-4" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="section section--ice section--line">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Derrière le suivi</p>
+      <h2 class="h1">D&rsquo;où viennent les jalons</h2>
+      <p class="lede">Chaque jalon est inscrit par la personne ou le système qui l&rsquo;a exécuté, plutôt que déduit d&rsquo;un horaire prévu.</p>
+    </div>
+    <div class="steps">
+      <div><div class="n">1</div><h4>Porte du terminal</h4><p>Les lectures automatiques à Halifax et à Bremerhaven consignent l&rsquo;entrée et la sortie du conteneur.</p></div>
+      <div><div class="n">2</div><h4>Confirmation de chargement</h4><p>Le plan d&rsquo;arrimage est rapproché du plan de baie une fois le chargement terminé.</p></div>
+      <div><div class="n">3</div><h4>Position du navire</h4><p>Position et vitesse telles que déclarées par le transporteur qui exploite le service.</p></div>
+      <div><div class="n">4</div><h4>Événements douaniers</h4><p>Acceptation, examen et mainlevée sont inscrits par nos services à chaque frontière.</p></div>
+      <div><div class="n">5</div><h4>Livraison</h4><p>Le dernier jalon est signé par le destinataire et versé au dossier comme preuve de livraison.</p></div>
+    </div>
+
+    <div class="grid g-3 mt-4">
+      <div class="card">
+        <h3 class="h4">Avis</h3>
+        <p>Les clients sous contrat reçoivent un courriel ou un message EDI à chaque jalon. Dites-nous lesquels comptent et nous n&rsquo;enverrons que ceux-là.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">Intégration</h3>
+        <p>Si vous voulez recevoir l&rsquo;état dans votre propre système plutôt que dans une boîte de réception, dites-nous ce que vous utilisez et nous trouverons la voie la moins pénible.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">Quelque chose cloche</h3>
+        <p>Si un jalon ne correspond pas à ce que vous constatez sur le terrain, appelez les opérations : quelqu&rsquo;un ouvrira le dossier réel.</p>
+        <a class="link-arrow mt-2" href="contact.html">Joindre les opérations</a>
+      </div>
+    </div>
+  </div>
+</section>

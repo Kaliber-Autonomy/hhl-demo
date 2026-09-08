@@ -8,8 +8,39 @@
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
   /* ---------------- helpers ---------------- */
-  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  var DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  /* Runtime strings for this page's locale, written by tools/build.js.
+     Anything missing falls back to English rather than to undefined. */
+  var L = window.HHL_STRINGS || {};
+  var EN = {
+    jsMonths: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    jsDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    jsBookingOpen: 'Booking open', jsNearlyFull: 'Nearly full', jsClosed: 'Closed',
+    jsAtSea: 'At sea', jsArrived: 'Arrived', jsBook: 'Book', jsVoyage: 'Voyage',
+    jsTo: 'to', jsDaysAtSea: 'days at sea', jsShowing: 'Showing', jsOf: 'of',
+    jsSailings: 'sailings', jsNoSailings: 'No sailings match those filters.',
+    jsSearching: 'Searching the operations system for', jsNotFound: 'No shipment found for',
+    jsNotFoundHelp: 'Check the booking or container number and try again.',
+    jsShipment: 'Shipment', jsHistory: 'Movement history', jsConsignment: 'Consignment',
+    jsDocuments: 'Documents', jsEta: 'Estimated arrival', jsScheduled: '(scheduled)',
+    jsProgress: 'of the voyage complete', jsLastPosition: 'last position',
+    jsAskAbout: 'Ask about this shipment', jsRequired: 'This field is required.',
+    jsBadEmail: 'Enter a valid email address.', jsBadPhone: 'Enter a valid phone number.',
+    jsConfirm: 'Please confirm to continue.',
+    jsToastQuote: 'received. Demo only, nothing was sent.',
+    jsToastMessage: 'Message received. This is a demonstration, so nothing was sent.',
+    jsShipper: 'Shipper', jsConsignee: 'Consignee', jsCommodity: 'Commodity',
+    jsPieces: 'Pieces', jsWeight: 'Gross weight', jsVessel: 'Vessel',
+    jsDeparted: 'Departed', jsContainer: 'Container',
+    jsVoyageLower: 'voyage', jsArrives: 'arrives'
+  };
+  function T(k) { return (L[k] !== undefined && L[k] !== null) ? L[k] : EN[k]; }
+  /* Data strings the site owns: statuses, milestones, equipment, documents.
+     Keyed by the English text so data.js needs no keys of its own, and
+     anything untranslated falls through to English rather than vanishing. */
+  function DS(v) { var x = L.jsXlat || {}; return (x[v] !== undefined) ? x[v] : v; }
+  var MONTHS = T('jsMonths');
+  var DAYS = T('jsDays');
+  var STATUS = { open: 'jsBookingOpen', full: 'jsNearlyFull', closed: 'jsClosed', atsea: 'jsAtSea', arrived: 'jsArrived' };
 
   function parseISO(s) { var p = String(s).split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
   function fmtDate(s) { var d = parseISO(s); return DAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()]; }
@@ -195,7 +226,7 @@
       if (!s) return;
       var val = $('[data-ns-value]', el), meta = $('[data-ns-meta]', el);
       if (val) val.textContent = fmtDate(s.etd) + ', 06:00';
-      if (meta) meta.textContent = s.vessel + ' · voyage ' + s.voyage + ' · arrives ' + fmtDate(s.eta);
+      if (meta) meta.textContent = s.vessel + ' · ' + T('jsVoyageLower') + ' ' + s.voyage + ' · ' + T('jsArrives') + ' ' + fmtDate(s.eta);
     });
   }
 
@@ -207,12 +238,9 @@
     var state = { dir: 'all', q: '', month: 'all', sort: 'etd', asc: true, limit: 12 };
 
     function statusBadge(st) {
-      var cls = 'badge--quiet';
-      if (st === 'Booking open') cls = 'badge--ok';
-      else if (st === 'Nearly full') cls = 'badge--warn';
-      else if (st === 'At sea') cls = '';
-      else if (st === 'Closed') cls = 'badge--alert';
-      return '<span class="badge ' + cls + ' badge--dot">' + esc(st) + '</span>';
+      var cls = { open: 'badge--ok', full: 'badge--warn', atsea: '', closed: 'badge--alert' }[st];
+      if (cls === undefined) cls = 'badge--quiet';
+      return '<span class="badge ' + cls + ' badge--dot">' + esc(T(STATUS[st] || 'jsArrived')) + '</span>';
     }
 
     function filtered() {
@@ -240,19 +268,20 @@
       host.innerHTML = shown.map(function (s) {
         var low = s.space < 15;
         return '<tr>' +
-          '<td><span class="vessel">' + esc(s.vessel) + '</span><br><span class="voy">Voyage ' + esc(s.voyage) + '</span></td>' +
-          '<td>' + esc(s.fromShort) + ' <span class="muted">to</span> ' + esc(s.toShort) + '<br><span class="tiny muted">' + esc(s.terminal) + '</span></td>' +
+          '<td><span class="vessel">' + esc(s.vessel) + '</span><br><span class="voy">' + esc(T('jsVoyage')) + ' ' + esc(s.voyage) + '</span></td>' +
+          '<td>' + esc(s.fromShort) + ' <span class="muted">' + esc(T('jsTo')) + '</span> ' + esc(s.toShort) +
+            (s.etaBremerhaven ? '<br><span class="tiny muted">via Bremerhaven ' + fmtDate(s.etaBremerhaven) + '</span>' : '<br><span class="tiny muted">' + esc(s.terminal) + '</span>') + '</td>' +
           '<td><b>' + fmtDate(s.etd) + '</b><br><span class="tiny muted">' + fmtDateFull(s.etd) + '</span></td>' +
-          '<td><b>' + fmtDate(s.eta) + '</b><br><span class="tiny muted">' + s.transit + ' days at sea</span></td>' +
+          '<td><b>' + fmtDate(s.eta) + '</b><br><span class="tiny muted">' + s.transit + ' ' + esc(T('jsDaysAtSea')) + '</span></td>' +
           '<td><span class="tiny muted">' + fmtDate(s.cutoff) + '</span></td>' +
           '<td><div class="flex items-center gap-1"><span class="meter' + (low ? ' is-low' : '') + '"><i style="width:' + s.space + '%"></i></span><span class="tiny muted">' + s.space + '%</span></div></td>' +
           '<td>' + statusBadge(s.status) + '</td>' +
-          '<td style="text-align:right"><a class="link-arrow" href="quote.html?voyage=' + encodeURIComponent(s.voyage) + '">Book</a></td>' +
+          '<td style="text-align:right"><a class="link-arrow" href="quote.html?voyage=' + encodeURIComponent(s.voyage) + '">' + esc(T('jsBook')) + '</a></td>' +
           '</tr>';
-      }).join('') || '<tr><td colspan="8" style="padding:2.4rem;text-align:center" class="muted">No sailings match those filters. Try widening the date range.</td></tr>';
+      }).join('') || '<tr><td colspan="8" style="padding:2.4rem;text-align:center" class="muted">' + esc(T('jsNoSailings')) + '</td></tr>';
 
       var meta = $('#schedule-count');
-      if (meta) meta.textContent = 'Showing ' + shown.length + ' of ' + rows.length + ' sailings';
+      if (meta) meta.textContent = T('jsShowing') + ' ' + shown.length + ' ' + T('jsOf') + ' ' + rows.length + ' ' + T('jsSailings');
       var more = $('#schedule-more');
       if (more) more.hidden = shown.length >= rows.length;
     }
@@ -298,13 +327,13 @@
     var t = D.iso(D.today);
     var rows = (D.sailings || []).filter(function (s) { return s.etd >= t; }).slice(0, 5);
     host.innerHTML = rows.map(function (s) {
-      var cls = s.status === 'Booking open' ? 'badge--ok' : (s.status === 'Nearly full' ? 'badge--warn' : 'badge--quiet');
+      var cls = s.status === 'open' ? 'badge--ok' : (s.status === 'full' ? 'badge--warn' : 'badge--quiet');
       return '<tr>' +
         '<td><span class="vessel">' + esc(s.vessel) + '</span> <span class="voy">' + esc(s.voyage) + '</span></td>' +
         '<td>' + esc(s.fromShort) + ' <span class="muted">&rarr;</span> ' + esc(s.toShort) + '</td>' +
         '<td><b>' + fmtDate(s.etd) + '</b></td>' +
         '<td>' + fmtDate(s.eta) + '</td>' +
-        '<td><span class="badge ' + cls + ' badge--dot">' + esc(s.status) + '</span></td>' +
+        '<td><span class="badge ' + cls + ' badge--dot">' + esc(T(STATUS[s.status] || 'jsArrived')) + '</span></td>' +
         '</tr>';
     }).join('');
   }
@@ -320,7 +349,7 @@
       out.innerHTML =
         '<div class="notice notice--warn" role="status">' +
         '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5M12 16.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg>' +
-        '<div><p><b>No shipment found for ' + esc(ref) + '.</b></p><p class="mb-0">' + msg + '</p></div></div>';
+        '<div><p><b>' + esc(T('jsNotFound')) + ' ' + esc(ref) + '.</b></p><p class="mb-0">' + msg + '</p></div></div>';
     }
 
     function render(s) {
@@ -332,49 +361,49 @@
         '<article class="card" style="padding:0;overflow:hidden">' +
           '<header style="padding:clamp(20px,2.6vw,30px);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;align-items:flex-start">' +
             '<div>' +
-              '<span class="eyebrow" style="margin-bottom:.5rem">Shipment ' + esc(s.ref) + '</span>' +
+              '<span class="eyebrow" style="margin-bottom:.5rem">' + esc(T('jsShipment')) + ' ' + esc(s.ref) + '</span>' +
               '<h2 class="h3" style="margin-bottom:.35rem">' + esc(s.pol.split(',')[0]) + ' to ' + esc(s.pod.split(',')[0]) + '</h2>' +
-              '<p class="small muted mb-0">Container <span class="mono">' + esc(s.container) + '</span> · ' + esc(s.type) + ' · ' + esc(s.service) + '</p>' +
+              '<p class="small muted mb-0">' + esc(T('jsContainer')) + ' <span class="mono">' + esc(s.container) + '</span> · ' + esc(DS(s.type)) + ' · ' + esc(DS(s.service)) + '</p>' +
             '</div>' +
             '<div style="text-align:right">' +
-              '<span class="badge ' + tone + ' badge--dot">' + esc(s.statusLabel) + '</span>' +
-              '<p class="small muted mb-0 mt-1">Estimated arrival<br><b style="color:var(--navy-900)">' + fmtDateFull(s.eta) + '</b></p>' +
+              '<span class="badge ' + tone + ' badge--dot">' + esc(DS(s.statusLabel)) + '</span>' +
+              '<p class="small muted mb-0 mt-1">' + esc(T('jsEta')) + '<br><b style="color:var(--navy-900)">' + fmtDateFull(s.eta) + '</b></p>' +
             '</div>' +
           '</header>' +
           '<div style="padding:clamp(20px,2.6vw,30px);border-bottom:1px solid var(--line)">' +
             '<div class="flex between items-center" style="margin-bottom:.5rem"><span class="tiny muted">' + esc(s.pol) + '</span><span class="tiny muted">' + esc(s.pod) + '</span></div>' +
             '<div class="progressbar" style="margin-bottom:.6rem"><i style="width:' + s.progress + '%"></i></div>' +
-            '<p class="tiny muted mb-0">' + s.progress + '% of the voyage complete' +
-              (s.position ? ' · last position ' + esc(s.position.lat) + ' ' + esc(s.position.lon) + ' · ' + esc(s.position.speed) + ' on heading ' + esc(s.position.heading) : '') +
+            '<p class="tiny muted mb-0">' + s.progress + '% ' + esc(T('jsProgress')) +
+              (s.position ? ' · ' + esc(T('jsLastPosition')) + ' ' + esc(s.position.lat) + ' ' + esc(s.position.lon) + ' · ' + esc(s.position.speed) + ' on heading ' + esc(s.position.heading) : '') +
             '</p>' +
           '</div>' +
           '<div style="display:grid;grid-template-columns:1.15fr .85fr">' +
             '<div style="padding:clamp(20px,2.6vw,30px);border-right:1px solid var(--line)">' +
-              '<h3 class="h4" style="margin-bottom:1.2rem">Movement history</h3>' +
+              '<h3 class="h4" style="margin-bottom:1.2rem">' + esc(T('jsHistory')) + '</h3>' +
               '<ol class="timeline">' +
                 s.milestones.map(function (m, i) {
                   var cls = m.done ? (i === lastDone ? 'is-done is-current' : 'is-done') : '';
-                  return '<li class="' + cls + '"><span class="tl-title">' + esc(m.label) + '</span>' +
-                    '<div class="tl-meta">' + esc(m.place) + ' · ' + fmtStamp(m.at) + (m.done ? '' : ' <span class="muted">(scheduled)</span>') + '</div>' +
+                  return '<li class="' + cls + '"><span class="tl-title">' + esc(DS(m.label)) + '</span>' +
+                    '<div class="tl-meta">' + esc(m.place) + ' · ' + fmtStamp(m.at) + (m.done ? '' : ' <span class="muted">' + esc(T('jsScheduled')) + '</span>') + '</div>' +
                     (m.note ? '<div class="tl-note">' + esc(m.note) + '</div>' : '') + '</li>';
                 }).join('') +
               '</ol>' +
             '</div>' +
             '<div style="padding:clamp(20px,2.6vw,30px);background:var(--ice-50)">' +
-              '<h3 class="h4" style="margin-bottom:1rem">Consignment</h3>' +
+              '<h3 class="h4" style="margin-bottom:1rem">' + esc(T('jsConsignment')) + '</h3>' +
               '<div class="speclist" style="grid-template-columns:1fr;margin-top:0">' +
-                [['Shipper', s.shipper], ['Consignee', s.consignee], ['Commodity', s.commodity], ['Pieces', s.pieces], ['Gross weight', s.weight],
-                 ['Vessel', s.vessel], ['Voyage', s.voyage], ['Departed', fmtDateFull(s.etd)]].map(function (r) {
+                [[T('jsShipper'), s.shipper], [T('jsConsignee'), s.consignee], [T('jsCommodity'), s.commodity], [T('jsPieces'), s.pieces], [T('jsWeight'), s.weight],
+                 [T('jsVessel'), s.vessel], [T('jsVoyage'), s.voyage], [T('jsDeparted'), fmtDateFull(s.etd)]].map(function (r) {
                   return '<div><span class="k">' + esc(r[0]) + '</span><span class="v">' + esc(r[1]) + '</span></div>';
                 }).join('') +
               '</div>' +
-              '<h3 class="h4" style="margin:1.8rem 0 1rem">Documents</h3>' +
+              '<h3 class="h4" style="margin:1.8rem 0 1rem">' + esc(T('jsDocuments')) + '</h3>' +
               '<div class="speclist" style="grid-template-columns:1fr;margin-top:0">' +
                 s.documents.map(function (d) {
-                  return '<div><span class="k">' + esc(d.name) + '<br><span class="tiny mono">' + esc(d.ref) + '</span></span><span class="v">' + esc(d.status) + '</span></div>';
+                  return '<div><span class="k">' + esc(DS(d.name)) + '<br><span class="tiny mono">' + esc(DS(d.ref)) + '</span></span><span class="v">' + esc(DS(d.status)) + '</span></div>';
                 }).join('') +
               '</div>' +
-              '<a class="btn btn--ghost btn--sm mt-3" href="contact.html">Ask about this shipment</a>' +
+              '<a class="btn btn--ghost btn--sm mt-3" href="contact.html">' + esc(T('jsAskAbout')) + '</a>' +
             '</div>' +
           '</div>' +
         '</article>';
@@ -389,10 +418,10 @@
       if (!ref) { out.innerHTML = ''; return; }
       var s = D.findShipment(ref);
       out.setAttribute('aria-busy', 'true');
-      out.innerHTML = '<div class="notice"><p class="mb-0">Searching the operations system for <span class="mono">' + esc(ref) + '</span>…</p></div>';
+      out.innerHTML = '<div class="notice"><p class="mb-0">' + esc(T('jsSearching')) + ' <span class="mono">' + esc(ref) + '</span>…</p></div>';
       setTimeout(function () {
         out.setAttribute('aria-busy', 'false');
-        if (s) { render(s); } else { empty('Check the booking or container number and try again. Numbers look like <span class="mono">HHL-2041</span> or <span class="mono">HHLU2841503</span>.', ref); }
+        if (s) { render(s); } else { empty(esc(T('jsNotFoundHelp')) + ' <span class="mono">HHL-2041</span>, <span class="mono">HHLU2841503</span>.', ref); }
         if (push && window.history && window.history.replaceState) {
           window.history.replaceState({}, '', 'tracking.html?ref=' + encodeURIComponent(ref));
         }
@@ -426,10 +455,10 @@
     if (!input) return true;
     var v = (input.value || '').trim();
     var ok = true, msg = '';
-    if (input.required && !v) { ok = false; msg = 'This field is required.'; }
-    else if (v && input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v)) { ok = false; msg = 'Enter a valid email address.'; }
-    else if (v && input.type === 'tel' && !/^[\d\s+().-]{7,}$/.test(v)) { ok = false; msg = 'Enter a valid phone number.'; }
-    else if (input.type === 'checkbox' && input.required && !input.checked) { ok = false; msg = 'Please confirm to continue.'; }
+    if (input.required && !v) { ok = false; msg = T('jsRequired'); }
+    else if (v && input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v)) { ok = false; msg = T('jsBadEmail'); }
+    else if (v && input.type === 'tel' && !/^[\d\s+().-]{7,}$/.test(v)) { ok = false; msg = T('jsBadPhone'); }
+    else if (input.type === 'checkbox' && input.required && !input.checked) { ok = false; msg = T('jsConfirm'); }
     f.classList.toggle('is-invalid', !ok);
     var err = $('.err', f);
     if (err && msg) err.textContent = msg;
@@ -531,7 +560,7 @@
       $('#quote-ref').textContent = ref;
       $('#quote-echo').textContent = (d.origin || 'Halifax') + ' to ' + (d.destination || 'Rotterdam') + ', ' + (d.equipment || 'container') + ', ready ' + (d.ready || 'on request');
       show(steps.length - 1);
-      toast('Request ' + ref + ' received. Demo only, nothing was sent.');
+      toast(ref + ' ' + T('jsToastQuote'));
     });
     show(0);
   }
@@ -548,7 +577,7 @@
           form.hidden = true; done.hidden = false;
           done.setAttribute('tabindex', '-1'); done.focus();
         }
-        toast('Message received. This is a demonstration, so nothing was sent.');
+        toast(T('jsToastMessage'));
       });
     });
   }
